@@ -24,16 +24,28 @@ const requestAction = {
 export const onFailureActions = [
   requestAction,
   {
+    payload: { controller: 'hosts' },
+    subtype: 'BOOKMARKS',
+    type: 'API_GET',
+    url: '/api/bookmarks?search=controller%3Dhosts&per_page=100',
+  },
+  {
     payload: {
       error: new Error('Request failed with status code 422'),
-      item: { controller: 'hosts' },
+      payload: { controller: 'hosts' },
     },
-    type: types.BOOKMARKS_FAILURE,
+    type: 'BOOKMARKS_FAILURE',
   },
 ];
 
 export const onSuccessActions = [
   requestAction,
+  {
+    payload: { controller: 'hosts' },
+    subtype: 'BOOKMARKS',
+    type: 'API_GET',
+    url: '/api/bookmarks?search=controller%3Dhosts&per_page=100',
+  },
   {
     payload: {
       results: bookmarks,
