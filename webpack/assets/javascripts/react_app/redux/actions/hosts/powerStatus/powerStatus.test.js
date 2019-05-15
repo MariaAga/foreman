@@ -7,9 +7,12 @@ import {
   onSuccessActions,
 } from './powerStatus.fixtures';
 import * as actions from './index';
-import { mockRequest, mockReset } from '../../../../mockRequests';
+import { ajaxRequestAction } from '../../../middlewares/ajaxRequestAction';
+import IntegrationTestHelper from '../../../../common/IntegrationTestHelper';
+import API from '../../../../API';
 
-const mockStore = configureMockStore([thunk]);
+jest.mock('../../../../API');
+const mockStore = configureMockStore([thunk, ajaxRequestAction]);
 const store = mockStore({
   hosts: {
     powerStatus: immutable({}),
@@ -18,29 +21,35 @@ const store = mockStore({
 
 afterEach(() => {
   store.clearActions();
-  mockReset();
 });
 describe('hosts actions', () => {
-  it('creates HOST_POWER_STATUS_REQUEST and fails when host not found', () => {
-    mockRequest({
-      url: requestData.failRequest.url,
-      status: 500,
-    });
-    return store
-      .dispatch(actions.getHostPowerState(requestData.failRequest))
-      .then(() => expect(store.getActions()).toEqual(onFailureActions));
+  it('creates HOST_POWER_STATUS_REQUEST and fails when host not found', async () => {
+    API.get.mockImplementationOnce(
+      url =>
+        new Promise((resolve, reject) => {
+          reject(Error('Request failed with status code 500'));
+        })
+    );
+    store.dispatch(actions.getHostPowerState(requestData.failRequest));
+    await IntegrationTestHelper.flushAllPromises();
+    expect(store.getActions()).toEqual(onFailureActions);
   });
-  it('creates HOST_POWER_STATUS_REQUEST and responds with success', () => {
-    mockRequest({
-      url: requestData.successRequest.url,
-      response: {
-        id: 1,
-        state: 'na',
-        title: 'N/A',
-      },
-    });
-    return store
-      .dispatch(actions.getHostPowerState(requestData.successRequest))
-      .then(() => expect(store.getActions()[1]).toEqual(onSuccessActions));
+  it('creates HOST_POWER_STATUS_REQUEST and responds with success', async () => {
+    API.get.mockImplementationOnce(
+      url =>
+        new Promise((resolve, reject) => {
+          resolve({
+            url: requestData.successRequest.url,
+            data: {
+              id: 1,
+              state: 'na',
+              title: 'N/A',
+            },
+          });
+        })
+    );
+    store.dispatch(actions.getHostPowerState(requestData.successRequest));
+    await IntegrationTestHelper.flushAllPromises();
+    expect(store.getActions()).toEqual(onSuccessActions);
   });
 });

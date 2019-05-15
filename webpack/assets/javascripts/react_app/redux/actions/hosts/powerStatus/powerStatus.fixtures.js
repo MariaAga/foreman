@@ -18,14 +18,30 @@ export const requestData = {
 export const onFailureActions = [
   { payload: { id: 0 }, type: 'HOST_POWER_STATUS_REQUEST' },
   {
+    payload: { id: 0 },
+    subtype: 'HOST_POWER_STATUS',
+    type: 'API_GET',
+    url: '/hosts/0/power',
+  },
+  {
     payload: {
       error: new Error('Request failed with status code 500'),
-      item: { id: 0 },
+      payload: { id: 0 },
     },
     type: 'HOST_POWER_STATUS_FAILURE',
   },
 ];
-export const onSuccessActions = {
-  payload: mockSuccessRequests[0].response,
-  type: 'HOST_POWER_STATUS_SUCCESS',
-};
+
+export const onSuccessActions = [
+  { payload: { id: 1 }, type: 'HOST_POWER_STATUS_REQUEST' },
+  {
+    payload: { id: 1 },
+    subtype: 'HOST_POWER_STATUS',
+    type: 'API_GET',
+    url: '/hosts/1/power',
+  },
+  {
+    payload: mockSuccessRequests[0].response,
+    type: 'HOST_POWER_STATUS_SUCCESS',
+  },
+];
