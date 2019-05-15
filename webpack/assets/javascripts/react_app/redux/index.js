@@ -4,7 +4,9 @@ import { applyMiddleware, createStore } from 'redux';
 
 import reducers from './reducers';
 
-let middleware = [thunk];
+import { ajaxRequestAction } from './middlewares/ajaxRequestAction';
+
+let middleware = [thunk, ajaxRequestAction];
 
 const useLogger = () => {
   const isProduction = process.env.NODE_ENV === 'production';
