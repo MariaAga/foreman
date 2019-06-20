@@ -1,5 +1,5 @@
 import URI from 'urijs';
-
+import { API_OPERATIONS } from './../../../../redux/API';
 /**
  * An async Redux action that fetches and stores table data in Redux.
  * @param  {String} controller the controller name
@@ -11,8 +11,8 @@ const getTableItemsAction = (controller, query) => {
   url.addSearch({ ...query, include_permissions: true });
 
   return {
-    type: 'API_GET',
-    subtype: controller,
+    type: API_OPERATIONS.GET,
+    outputType: `${controller.toUpperCase()}_TABLE`,
     url: url.toString(),
     payload: { controller, url: url.toString() },
   };

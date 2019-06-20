@@ -1,8 +1,9 @@
 import { HOST_POWER_STATUS } from '../../../consts';
+import { API_OPERATIONS } from '../../../API';
 
 export const getHostPowerState = ({ id, url }) => ({
-  type: 'API_GET',
-  subtype: HOST_POWER_STATUS,
+  type: API_OPERATIONS.GET,
+  outputType: HOST_POWER_STATUS,
   url,
   payload: { id },
 });

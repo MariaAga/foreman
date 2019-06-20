@@ -2,11 +2,11 @@
 
 exports[`getTableItemsAction should call api get with url  1`] = `
 Object {
+  "outputType": "MODELS_TABLE",
   "payload": Object {
     "controller": "models",
     "url": "/api/models?include_permissions=true",
   },
-  "subtype": "models",
   "type": "API_GET",
   "url": "/api/models?include_permissions=true",
 }

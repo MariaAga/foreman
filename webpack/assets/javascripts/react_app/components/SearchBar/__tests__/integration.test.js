@@ -1,13 +1,14 @@
 import React from 'react';
 import { KEYCODES } from '../../../common/keyCodes';
-import API from '../../../API';
+import API from '../../../redux/API/API';
 import IntegrationTestHelper from '../../../common/IntegrationTestHelper';
 import { SearchBarProps } from '../SearchBar.fixtures';
 import SearchBar from '../index';
 import { reducers } from '../../AutoComplete';
 import bookmarksReducer from '../../../redux/reducers/bookmarks';
+import { APIMiddleware } from '../../../redux/API';
 
-jest.mock('../../../API');
+jest.mock('../../../redux/API/API');
 jest.mock('lodash/debounce', () => jest.fn(fn => fn));
 global.Turbolinks = {
   visit: jest.fn(),
@@ -21,7 +22,9 @@ describe('SearchBar integration test', () => {
     API.get.mockImplementation(async () => ({
       data: [{ label, category: '' }],
     }));
-    const integrationTestHelper = new IntegrationTestHelper(combinedReducers);
+    const integrationTestHelper = new IntegrationTestHelper(combinedReducers, [
+      APIMiddleware,
+    ]);
     const wrapper = integrationTestHelper.mount(
       <SearchBar {...SearchBarProps} />
     );

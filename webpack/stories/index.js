@@ -9,6 +9,7 @@ import addingNewComponent from './docs/addingNewComponent.md';
 import hoc from './docs/hoc.md';
 import addingDependencies from './docs/addingDependencies.md';
 import internationalization from './docs/internationalization.md';
+import APIMiddleware from './docs/APIMiddleware.md';
 import plugins from './docs/plugins.md';
 
 require('../assets/javascripts/bundle');
@@ -56,6 +57,11 @@ storiesOf('Introduction', module)
   .add('Plugins', () => (
     <Story>
       <Markdown source={plugins} />
+    </Story>
+  ))
+  .add('API Middleware', () => (
+    <Story>
+      <Markdown source={APIMiddleware} />
     </Story>
   ));
 

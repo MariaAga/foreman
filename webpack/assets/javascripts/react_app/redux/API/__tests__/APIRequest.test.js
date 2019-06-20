@@ -1,50 +1,43 @@
-import { ajaxRequestAction } from './ajaxRequestAction';
-import API from '../../API';
-import IntegrationTestHelper from '../../common/IntegrationTestHelper';
+import { get } from '../APIRequest';
+import { API } from '../';
+import IntegrationTestHelper from '../../../common/IntegrationTestHelper';
 
 const data = { results: [1] };
 const payload = { name: 'test', id: 'myid' };
-jest.mock('../../API');
+jest.mock('../');
 
-describe('ajaxRequestAction', () => {
+describe('API get', () => {
   const store = { dispatch: jest.fn() };
-
+  const url = 'test/subtest';
+  const actionTypes = {
+    REQUEST: 'TEST_REQUEST',
+    SUCCESS: 'TEST_SUCCESS',
+    FAILURE: 'TEST_FAILURE',
+  };
   beforeEach(() => {
     store.dispatch = jest.fn();
   });
 
   it('should dispatch request and success actions on resolve', async () => {
     API.get.mockImplementation(
-      url =>
+      () =>
         new Promise((resolve, reject) => {
           resolve({ data });
         })
     );
-    const url = 'test/subtest';
-    ajaxRequestAction(store)(jest.fn())({
-      type: 'API_GET',
-      subtype: 'TEST',
-      payload,
-      url,
-    });
+    get(payload, url, store, actionTypes);
     await IntegrationTestHelper.flushAllPromises();
     expect(store.dispatch.mock.calls).toMatchSnapshot();
   });
 
   it('should dispatch request and failure actions on reject', async () => {
     API.get.mockImplementation(
-      url =>
+      () =>
         new Promise((resolve, reject) => {
           reject(Error('bad request'));
         })
     );
-    const url = 'test/subtest';
-    ajaxRequestAction(store)(jest.fn())({
-      type: 'API_GET',
-      subtype: 'TEST',
-      payload,
-      url,
-    });
+    get(payload, url, store, actionTypes);
     await IntegrationTestHelper.flushAllPromises();
     expect(store.dispatch.mock.calls).toMatchSnapshot();
   });

@@ -3,10 +3,11 @@ import {
   FACT_CHART_MODAL_OPEN,
   FACT_CHART_MODAL_CLOSE,
 } from './FactChartConstants';
+import { API_OPERATIONS } from '../../redux/API';
 
 export const getChartData = (url, id) => ({
-  type: 'API_GET',
-  subtype: FACT_CHART,
+  type: API_OPERATIONS.GET,
+  outputType: FACT_CHART,
   url,
   payload: { id },
 });

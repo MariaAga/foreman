@@ -1,5 +1,5 @@
 import { flatten, get } from 'lodash';
-import API from '../../API';
+import { API } from '../../redux/API';
 
 import {
   BREADCRUMB_BAR_TOGGLE_SWITCHER,

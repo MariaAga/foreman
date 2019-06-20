@@ -2,10 +2,10 @@
 
 exports[`FactCharts actions getChartData should return api get with url and id 1`] = `
 Object {
+  "outputType": "FACT_CHART",
   "payload": Object {
     "id": 1,
   },
-  "subtype": "FACT_CHART",
   "type": "API_GET",
   "url": "url",
 }

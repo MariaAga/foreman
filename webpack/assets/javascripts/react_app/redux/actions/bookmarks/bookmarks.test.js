@@ -8,15 +8,15 @@ import {
   onFailureActions,
   onSuccessActions,
 } from './bookmarks.fixtures';
-import API from '../../../API';
-import { ajaxRequestAction } from '../../middlewares/ajaxRequestAction';
+import API from '../../API/API';
+import { APIMiddleware } from '../../API';
 import IntegrationTestHelper from '../../../common/IntegrationTestHelper';
 
-const middlewares = [thunk, ajaxRequestAction];
+const middlewares = [thunk, APIMiddleware];
 const mockStore = configureMockStore(middlewares);
 const store = mockStore(initialState);
 
-jest.mock('../../../API');
+jest.mock('../../API/API');
 afterEach(() => {
   store.clearActions();
 });

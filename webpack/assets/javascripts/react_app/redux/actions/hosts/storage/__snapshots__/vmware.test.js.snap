@@ -4,12 +4,12 @@ exports[`vmware storage hosts actions fetchDatastores doesnt make the ajax reque
 
 exports[`vmware storage hosts actions fetchDatastores makes the ajax request to the right url 1`] = `
 Object {
+  "outputType": "STORAGE_VMWARE_DATASTORES",
   "payload": Object {
     "params": Object {
       "cluster_id": "cluster",
     },
   },
-  "subtype": "STORAGE_VMWARE_DATASTORES",
   "type": "API_GET",
   "url": "test.com/datastores",
 }
@@ -19,12 +19,12 @@ exports[`vmware storage hosts actions fetchStoragePods doesnt make the ajax requ
 
 exports[`vmware storage hosts actions fetchStoragePods makes the ajax request to the right url 1`] = `
 Object {
+  "outputType": "STORAGE_VMWARE_STORAGEPODS",
   "payload": Object {
     "params": Object {
       "cluster_id": "cluster",
     },
   },
-  "subtype": "STORAGE_VMWARE_STORAGEPODS",
   "type": "API_GET",
   "url": "test.com/storage_pods",
 }

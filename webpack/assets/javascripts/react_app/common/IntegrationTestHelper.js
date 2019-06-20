@@ -3,7 +3,6 @@ import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import { ajaxRequestAction } from '../redux/middlewares/ajaxRequestAction';
 
 export default class IntegrationTestHelper {
   /**
@@ -20,11 +19,7 @@ export default class IntegrationTestHelper {
   constructor(reducers, middlewares = []) {
     this.dispatchSpy = jest.fn(() => ({}));
     const reducerSpy = (state, action) => this.dispatchSpy(action);
-    const emptyStore = applyMiddleware(
-      thunk,
-      ajaxRequestAction,
-      ...middlewares
-    )(createStore);
+    const emptyStore = applyMiddleware(thunk, ...middlewares)(createStore);
     const combinedReducers = combineReducers({
       reducerSpy,
       ...reducers,

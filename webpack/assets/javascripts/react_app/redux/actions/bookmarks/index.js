@@ -4,10 +4,11 @@ import {
   BOOKMARKS_MODAL_OPENED,
   BOOKMARKS_MODAL_CLOSED,
 } from '../../consts';
+import { API_OPERATIONS } from '../../API';
 
 const _getBookmarks = (url, controller) => ({
-  type: 'API_GET',
-  subtype: BOOKMARKS,
+  type: API_OPERATIONS.GET,
+  outputType: BOOKMARKS,
   url,
   payload: { controller },
 });

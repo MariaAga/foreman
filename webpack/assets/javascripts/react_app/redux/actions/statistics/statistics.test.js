@@ -8,16 +8,16 @@ import {
   onSuccessActions,
 } from './statistics.fixtures';
 
-import API from '../../../API';
-import { ajaxRequestAction } from '../../middlewares/ajaxRequestAction';
+import API from '../../API/API';
+import { APIMiddleware } from '../../API';
 import IntegrationTestHelper from '../../../common/IntegrationTestHelper';
 
 import * as actions from './index';
 
-const mockStore = configureMockStore([thunk, ajaxRequestAction]);
+const mockStore = configureMockStore([thunk, APIMiddleware]);
 const store = mockStore({ statistics: immutable({}) });
 
-jest.mock('../../../API');
+jest.mock('../../API/API');
 afterEach(() => {
   store.clearActions();
 });

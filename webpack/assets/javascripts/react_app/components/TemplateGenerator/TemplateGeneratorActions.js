@@ -1,5 +1,5 @@
 import { saveAs } from 'file-saver';
-import API from '../../API';
+import { API } from '../../redux/API';
 
 import {
   TEMPLATE_GENERATE_REQUEST,

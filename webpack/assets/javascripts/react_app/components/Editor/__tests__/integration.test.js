@@ -1,12 +1,12 @@
 import React from 'react';
 
-import API from '../../../API';
+import { API } from '../../../redux/API';
 import IntegrationTestHelper from '../../../common/IntegrationTestHelper';
 
 import { editorOptions, serverRenderResponse } from '../Editor.fixtures';
 import Editor, { reducers } from '../index';
 
-jest.mock('../../../API');
+jest.mock('../../../redux/API');
 
 describe('Editor integration test', () => {
   it('should flow', () => {

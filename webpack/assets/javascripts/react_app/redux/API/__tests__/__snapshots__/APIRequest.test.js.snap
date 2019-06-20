@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ajaxRequestAction should dispatch request and failure actions on reject 1`] = `
+exports[`API get should dispatch request and failure actions on reject 1`] = `
 Array [
   Array [
     Object {
@@ -26,7 +26,7 @@ Array [
 ]
 `;
 
-exports[`ajaxRequestAction should dispatch request and success actions on resolve 1`] = `
+exports[`API get should dispatch request and success actions on resolve 1`] = `
 Array [
   Array [
     Object {

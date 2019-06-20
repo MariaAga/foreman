@@ -11,7 +11,7 @@ import {
 } from '../../consts';
 import { doesDocumentHasFocus } from '../../../common/document';
 import { notificationsDrawer as sessionStorage } from '../../../common/sessionStorage';
-import API from '../../../API';
+import { API } from '../../API';
 
 const defaultNotificationsPollingInterval = 10000;
 const notificationsInterval =

@@ -7,12 +7,12 @@ import {
   onSuccessActions,
 } from './powerStatus.fixtures';
 import * as actions from './index';
-import { ajaxRequestAction } from '../../../middlewares/ajaxRequestAction';
+import { APIMiddleware } from '../../../API';
 import IntegrationTestHelper from '../../../../common/IntegrationTestHelper';
-import API from '../../../../API';
+import API from '../../../API/API';
 
-jest.mock('../../../../API');
-const mockStore = configureMockStore([thunk, ajaxRequestAction]);
+jest.mock('../../../API/API');
+const mockStore = configureMockStore([thunk, APIMiddleware]);
 const store = mockStore({
   hosts: {
     powerStatus: immutable({}),
