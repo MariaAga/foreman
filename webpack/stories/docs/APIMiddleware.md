@@ -44,3 +44,21 @@ actionTypes: {
     FAILURE: 'CUSTOM_FAILURE'},
 });`
 ```
+
+Auto data pulling
+
+to start:
+```js
+dispatch({
+type: `${componentName}_START_POLLING`,
+url,
+});`
+```
+
+to end:
+```js
+dispatch({
+type: `${componentName}_STOP_POLLING`,
+url,
+});`
+```

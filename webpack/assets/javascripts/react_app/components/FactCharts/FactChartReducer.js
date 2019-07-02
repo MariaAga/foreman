@@ -6,6 +6,7 @@ import {
   FACT_CHART_MODAL_CLOSE,
   FACT_CHART_MODAL_OPEN,
 } from './FactChartConstants';
+import { createApiReducer } from '../../redux/reducers/polling';
 
 const initialState = Immutable({
   modalToDisplay: {},
@@ -36,3 +37,5 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+export default createApiReducer(FACT_CHART);
