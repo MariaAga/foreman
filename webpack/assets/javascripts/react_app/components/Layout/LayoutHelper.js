@@ -8,11 +8,27 @@ import {
 } from '../../../foreman_navigation';
 import { translate as __ } from '../../common/I18n';
 import { removeLastSlashFromPath } from '../../common/helpers';
+import { ANY_ORGANIZATION_TEXT, ANY_LOCATION_TEXT } from './LayoutConstants';
+
+export const createInitialTaxonomy = (currentTaxonomy, availableTaxonomies) => {
+  if (!currentTaxonomy) {
+    return null;
+  }
+
+  const taxonomyId = availableTaxonomies.find(
+    taxonomy => taxonomy.title === currentTaxonomy
+  ).id;
+
+  return {
+    title: currentTaxonomy,
+    id: taxonomyId,
+  };
+};
 
 export const getCurrentPath = () =>
   removeLastSlashFromPath(window.location.pathname);
 
-export const getActive = (items, path) => {
+export const getActiveMenuItem = (items, path = getCurrentPath()) => {
   for (const item of items) {
     for (const child of item.children) {
       if (child.exact) {
@@ -58,10 +74,10 @@ export const combineMenuItems = data => {
 
 const createOrgItem = orgs => {
   const anyOrg = {
-    name: __('Any Organization'),
+    name: ANY_ORGANIZATION_TEXT,
     url: '/organizations/clear',
     onClick: () => {
-      changeOrganization(__('Any Organization'));
+      changeOrganization(ANY_ORGANIZATION_TEXT);
     },
   };
   const childrenArray = [];
@@ -92,10 +108,10 @@ const createOrgItem = orgs => {
 
 const createLocationItem = locations => {
   const anyLoc = {
-    name: __('Any Location'),
+    name: ANY_LOCATION_TEXT,
     url: '/locations/clear',
     onClick: () => {
-      changeLocation(__('Any Location'));
+      changeLocation(ANY_LOCATION_TEXT);
     },
   };
   const childrenArray = [];
@@ -122,11 +138,4 @@ const createLocationItem = locations => {
     className: 'visible-xs-block',
   };
   return locItem;
-};
-
-export const checkCollapsed = () => {
-  const collapsedState = sessionStorage.getItem(
-    `["navCollapsed","pinnedPath"]`
-  );
-  return !!collapsedState && collapsedState.includes('true');
 };
