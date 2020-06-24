@@ -1,5 +1,4 @@
 import Immutable from 'seamless-immutable';
-import { checkCollapsed } from './LayoutHelper';
 
 import {
   LAYOUT_SHOW_LOADING,
@@ -8,14 +7,11 @@ import {
   LAYOUT_CHANGE_ORG,
   LAYOUT_CHANGE_LOCATION,
   LAYOUT_CHANGE_ACTIVE,
-  LAYOUT_EXPAND,
-  LAYOUT_COLLAPSE,
 } from './LayoutConstants';
 
 const initialState = Immutable({
   items: [],
   isLoading: false,
-  isCollapsed: checkCollapsed(),
   activeMenu: 'initialActive',
   currentOrganization: { title: 'Any Organization' },
   currentLocation: { title: 'Any Location' },
@@ -42,12 +38,6 @@ export default (state = initialState, action) => {
 
     case LAYOUT_CHANGE_ACTIVE:
       return state.set('activeMenu', activeMenu);
-
-    case LAYOUT_EXPAND:
-      return state.set('isCollapsed', false);
-
-    case LAYOUT_COLLAPSE:
-      return state.set('isCollapsed', true);
 
     default:
       return state;

@@ -6,8 +6,6 @@ import {
   LAYOUT_CHANGE_LOCATION,
   LAYOUT_CHANGE_ACTIVE,
   LAYOUT_CHANGE_ORG,
-  LAYOUT_EXPAND,
-  LAYOUT_COLLAPSE,
 } from './LayoutConstants';
 
 export const showLoading = () => ({
@@ -52,11 +50,3 @@ export const changeLocation = location => dispatch => {
     },
   });
 };
-
-export const onExpand = () => ({
-  type: LAYOUT_EXPAND,
-});
-
-export const onCollapse = () => ({
-  type: LAYOUT_COLLAPSE,
-});

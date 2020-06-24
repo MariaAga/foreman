@@ -35,24 +35,12 @@
     margin-left: 4px;
   }
 }
-
-.navbar-brand {
-  display: flex;
-  padding: 0;
-  height: inherit;
-
-  span {
-    display: table;
-
-    .navbar-brand-txt {
-      display: table-cell;
-      vertical-align: middle;
-      color: white;
-      text-transform: uppercase;
-      font-weight: bold;
-      font-size: 20px;
-      font-family: "Open Sans", Helvetica, Arial, sans-serif;
-    }
+.pf-c-page__header-brand-link{
+  .pf-c-brand {
+    width: 44px;
+    height: 34px;
+    margin: 0 5px 0 0 !important;
+    max-width: none;
   }
 }
 
@@ -72,12 +60,4 @@
   background-size: cover;
   width: 100%;
   height: 60px;
-}
-
-.navbar-left {
-  padding-left: 15px;
-}
-
-.drawer-pf-trigger {
-  padding-top: 15px;
 }

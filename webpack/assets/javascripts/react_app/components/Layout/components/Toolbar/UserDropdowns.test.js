@@ -1,12 +1,13 @@
 import React from 'react';
-import { shallow } from '@theforeman/test';
-import { testComponentSnapshotsWithFixtures } from '../../../common/testHelpers';
+import { mount } from '@theforeman/test';
+import { testComponentSnapshotsWithFixtures } from '../../../../common/testHelpers';
 
-import UserDropdowns from '../components/UserDropdowns';
-import { userDropdownProps } from '../Layout.fixtures';
+import UserDropdowns from './UserDropdowns';
+import { userDropdownProps } from '../../Layout.fixtures';
 
 const createStubs = () => ({
   changeActiveMenu: jest.fn(),
+  isOpen: true,
 });
 
 const fixtures = {
@@ -21,10 +22,12 @@ describe('UserDropdown', () => {
     testComponentSnapshotsWithFixtures(UserDropdowns, fixtures));
 
   describe('trigger onClicks', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <UserDropdowns {...userDropdownProps} {...createStubs()} />
     );
-
-    wrapper.find('.user_menuitem').simulate('click');
+    wrapper
+      .find('.user_menuitem')
+      .last()
+      .simulate('click');
   });
 });
