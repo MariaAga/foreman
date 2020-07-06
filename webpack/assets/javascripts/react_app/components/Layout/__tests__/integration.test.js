@@ -11,6 +11,7 @@ jest.mock('../../notifications', () => 'span');
 describe('Layout integration test', () => {
   it('should flow', async () => {
     const integrationTestHelper = new IntegrationTestHelper(reducers);
+    const spy = jest.spyOn(console, 'error').mockImplementation();
 
     const component = integrationTestHelper.mount(
       <Router>
@@ -20,8 +21,13 @@ describe('Layout integration test', () => {
     await IntegrationTestHelper.flushAllPromises();
     component.update();
 
+    // Currently expect a prop warning since VerticalNav passes an object into NavExpandable title prop although it expects a string. This will change soon.
+    expect(spy).toHaveBeenCalledTimes(1);
+    // eslint-disable-next-line
+    expect(console.error.mock.calls[0][0]).toEqual(expect.stringContaining('Warning: Failed prop type: Invalid prop `title` of type `object` supplied to `NavExpandable`, expected `string`'));
+    spy.mockRestore();
+
     integrationTestHelper.takeStoreSnapshot('initial state');
-    const hostsMenuItem = component.find('.secondary-nav-item-pf > a');
     const locationToggle = component.find(
       '#location-dropdown .pf-c-context-selector__toggle'
     );
@@ -52,15 +58,26 @@ describe('Layout integration test', () => {
         .text()
     ).toBe('org2');
 
+    const hostsMenuItem = component.find('li.foreman-nav-expandable').at(1);
+
+    hostsMenuItem.prop('onClick')({
+      target: {
+        getAttribute: attr => 'pf-nav-expandable',
+      },
+    });
+
     await IntegrationTestHelper.flushAllPromises();
+    hostsMenuItem.update();
     component.update();
 
-    hostsMenuItem.at(1).simulate('click');
     integrationTestHelper.takeStoreAndLastActionSnapshot(
       'Changed ActiveMenu to Hosts'
     );
-    expect(component.find('.secondary-nav-item-pf .active > a').text()).toBe(
-      'Hosts'
-    );
+    expect(
+      component
+        .find('.pf-c-nav__item.pf-m-expanded > a')
+        .at(1)
+        .text()
+    ).toBe('Hosts');
   });
 });

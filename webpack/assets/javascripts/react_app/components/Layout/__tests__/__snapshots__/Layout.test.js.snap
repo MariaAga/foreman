@@ -1,70 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Layout rendering renders layout 1`] = `
-<Fragment>
-  <VerticalNav
-    activePath="/Monitor/"
-    blurDelay={700}
-    blurDisabled={false}
-    dynamicBodyClasses={true}
-    forceHidden={false}
-    hiddenIcons={false}
-    hideMasthead={false}
-    hoverDelay={100}
-    hoverDisabled={false}
-    items={
-      Array [
-        Object {
-          "href": "/a",
-          "iconClass": "fa fa-tachometer",
-          "initialActive": true,
-          "subItems": undefined,
-          "title": "Monitor",
-        },
-        Object {
-          "href": "/b",
-          "iconClass": "fa fa-server",
-          "initialActive": false,
-          "subItems": undefined,
-          "title": "Hosts",
-        },
-        Object {
-          "href": "/c",
-          "iconClass": "fa fa-wrench",
-          "initialActive": false,
-          "subItems": undefined,
-          "title": "Configure",
-        },
-      ]
-    }
-    masthead={null}
-    onCollapse={[Function]}
-    onExpand={[Function]}
-    onItemBlur={null}
-    onItemClick={[Function]}
-    onItemHover={null}
-    onItemPin={null}
-    onMenuToggleClick={null}
-    onMobileSelection={null}
-    onNavigate={[Function]}
-    persist={true}
-    persistentSecondary={true}
-    pinnableMenus={false}
-    showBadges={false}
-  >
-    <VerticalNav.Masthead>
-      <header
-        className="pf-c-page__header"
-        id="navbar-header"
-      >
-        <VerticalNav.Brand
-          href="/"
-          iconImg="/assets/header_logo-c9614c16f2ee399ae9cb7f36ec94b9a26bf8cf9eabaa7fe6099bf80d1f7940db.svg"
-          img=""
-          onClick={null}
-          title=""
-          titleImg=""
-        />
+<Page
+  className="foreman-theme"
+  defaultManagedSidebarIsOpen={true}
+  header={
+    <PageHeader
+      className="navbar-pf-vertical"
+      headerTools={
         <HeaderToolbar
           changeActiveMenu={[Function]}
           changeLocation={[Function]}
@@ -202,11 +145,13 @@ exports[`Layout rendering renders layout 1`] = `
                   Object {
                     "children": Array [
                       Object {
+                        "href": "/Aa",
                         "isDivider": false,
                         "onClick": [MockFunction],
                         "title": "Aa",
                       },
                       Object {
+                        "href": "/Cc",
                         "isDivider": false,
                         "onClick": [MockFunction],
                         "title": "Cc",
@@ -222,11 +167,112 @@ exports[`Layout rendering renders layout 1`] = `
           }
           isLoading={false}
         />
-      </header>
-    </VerticalNav.Masthead>
-  </VerticalNav>
-  <LayoutContainer
-    isCollapsed={false}
+      }
+      isManagedSidebar={true}
+      logo={
+        <Brand
+          src="/assets/header_logo-c9614c16f2ee399ae9cb7f36ec94b9a26bf8cf9eabaa7fe6099bf80d1f7940db.svg"
+        />
+      }
+      logoProps={
+        Object {
+          "href": "/",
+        }
+      }
+      onNavToggle={[Function]}
+      showNavToggle={true}
+    />
+  }
+  isManagedSidebar={false}
+  mainContainerId="main"
+  mainTabIndex={-1}
+  onPageResize={[Function]}
+  sidebar={
+    <PageSidebar
+      nav={
+        <VerticalNav
+          activeMenu="Monitor"
+          changeActiveMenu={[Function]}
+          items={
+            Array [
+              Object {
+                "href": "/a",
+                "iconClass": "fa fa-tachometer",
+                "initialActive": true,
+                "subItems": Array [
+                  Object {
+                    "href": "/Aa",
+                    "isDivider": false,
+                    "onClick": [MockFunction],
+                    "title": "Aa",
+                  },
+                  Object {
+                    "href": "/Cc",
+                    "isDivider": false,
+                    "onClick": [MockFunction],
+                    "title": "Cc",
+                  },
+                ],
+                "title": "Monitor",
+              },
+              Object {
+                "href": "/b",
+                "iconClass": "fa fa-server",
+                "initialActive": false,
+                "subItems": Array [
+                  Object {
+                    "href": "/Dd",
+                    "isDivider": false,
+                    "onClick": [MockFunction],
+                    "title": "Dd",
+                  },
+                  Object {
+                    "href": "/Ff",
+                    "isDivider": false,
+                    "onClick": [MockFunction],
+                    "title": "Ff",
+                  },
+                ],
+                "title": "Hosts",
+              },
+              Object {
+                "href": "/c",
+                "iconClass": "fa fa-wrench",
+                "initialActive": false,
+                "subItems": Array [
+                  Object {
+                    "href": "/Gg",
+                    "isDivider": false,
+                    "onClick": [MockFunction],
+                    "title": "Gg",
+                  },
+                  Object {
+                    "href": "/Ii",
+                    "isDivider": false,
+                    "onClick": [MockFunction],
+                    "title": "Ii",
+                  },
+                ],
+                "title": "Configure",
+              },
+            ]
+          }
+          navigate={[Function]}
+        />
+      }
+    />
+  }
+  skipToContent={
+    <SkipToContent
+      href="#main"
+      show={false}
+    >
+      Skip to content
+    </SkipToContent>
+  }
+>
+  <PageSection
+    variant="light"
   />
-</Fragment>
+</Page>
 `;

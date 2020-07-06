@@ -60,6 +60,10 @@ exports[`TaxonomySwitcher rendering render TaxonomySwitcher 1`] = `
     />
   </ToolbarItem>
   <Spinner
+    className=""
+    inline={false}
+    inverse={true}
+    loading={true}
     size="md"
   />
 </Fragment>

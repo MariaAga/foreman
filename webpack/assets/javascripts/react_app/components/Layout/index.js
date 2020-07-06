@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { global_breakpoint_md as globalBreakpointMd } from '@patternfly/react-tokens/';
 
 import {
   ANY_LOCATION_TAXONOMY,
@@ -13,6 +14,7 @@ import {
   changeLocation,
   collapseLayoutMenus,
   expandLayoutMenus,
+  changeIsNavOpen,
 } from './LayoutActions';
 import reducer from './LayoutReducer';
 import {
@@ -21,26 +23,24 @@ import {
   selectCurrentOrganization,
   selectCurrentLocation,
   selectIsLoading,
-  selectIsCollapsed,
+  selectIsNavOpen,
 } from './LayoutSelectors';
 import {
   createInitialTaxonomy,
   combineMenuItems,
   getActiveMenuItem,
 } from './LayoutHelper';
-import { isLayoutCollapsed } from './LayoutSessionStorage';
 
 import Layout from './Layout';
 
 const ConnectedLayout = ({ children, data }) => {
   const dispatch = useDispatch();
-
+  const isNavOpen = useSelector(state => selectIsNavOpen(state));
   useEffect(() => {
     dispatch(
       initializeLayout({
         items: combineMenuItems(data),
         activeMenu: getActiveMenuItem(data.menu).title,
-        isCollapsed: isLayoutCollapsed(),
         organization:
           (data.orgs &&
             createInitialTaxonomy(
@@ -59,10 +59,24 @@ const ConnectedLayout = ({ children, data }) => {
     );
   }, [data, dispatch]);
 
+  useEffect(() => {
+    const mobileView =
+      window.innerWidth < Number.parseInt(globalBreakpointMd.value, 10);
+    if (mobileView) {
+      // ignore for mobile view
+      return;
+    }
+    // toggles a class in the body tag, so that the main #rails-app-content container can have the appropriate width
+    if (isNavOpen) {
+      document.body.classList.add('pf-m-expanded');
+    } else {
+      document.body.classList.remove('pf-m-expanded');
+    }
+  }, [isNavOpen]);
+
   const { push: navigate } = useHistory();
   const items = useSelector(state => patternflyMenuItemsSelector(state));
   const isLoading = useSelector(state => selectIsLoading(state));
-  const isCollapsed = useSelector(state => selectIsCollapsed(state));
   const activeMenu = useSelector(state => selectActiveMenu(state));
   const currentOrganization = useSelector(state =>
     selectCurrentOrganization(state)
@@ -75,7 +89,7 @@ const ConnectedLayout = ({ children, data }) => {
       navigate={navigate}
       items={items}
       isLoading={isLoading}
-      isCollapsed={isCollapsed}
+      isNavOpen={isNavOpen}
       activeMenu={activeMenu}
       currentOrganization={currentOrganization}
       currentLocation={currentLocation}
@@ -84,6 +98,7 @@ const ConnectedLayout = ({ children, data }) => {
       changeLocation={loc => dispatch(changeLocation(loc))}
       collapseLayoutMenus={() => dispatch(collapseLayoutMenus())}
       expandLayoutMenus={() => dispatch(expandLayoutMenus())}
+      changeIsNavOpen={value => dispatch(changeIsNavOpen(value))}
     >
       {children}
     </Layout>

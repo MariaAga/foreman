@@ -6,8 +6,7 @@ import {
   changeActiveMenu,
   changeOrganization,
   changeLocation,
-  collapseLayoutMenus,
-  expandLayoutMenus,
+  changeIsNavOpen,
 } from '../LayoutActions';
 
 const fixtures = {
@@ -15,7 +14,6 @@ const fixtures = {
     initializeLayout({
       items: 'some items',
       activeMenu: 'some active menu',
-      isCollapsed: false,
       organization: 'org1',
       location: 'loc2',
     }),
@@ -27,9 +25,7 @@ const fixtures = {
   'should changeActiveMenu to Monitor': () =>
     changeActiveMenu({ title: 'Monitor' }),
 
-  'should expandLayoutMenus': () => expandLayoutMenus(),
-
-  'should collapseLayoutMenus': () => collapseLayoutMenus(),
+  'should changeIsNavOpen': () => changeIsNavOpen(false),
 
   'should changeOrganization': () => changeOrganization('org1'),
 

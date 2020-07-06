@@ -1,6 +1,49 @@
 const mockOnClick = jest.fn();
 
-const PFitems = [
+const subItemsA = [
+  {
+    title: 'Aa',
+    isDivider: false,
+    onClick: mockOnClick,
+    href: '/Aa',
+  },
+  {
+    title: 'Cc',
+    isDivider: false,
+    onClick: mockOnClick,
+    href: '/Cc',
+  },
+];
+const subItemsB = [
+  {
+    title: 'Dd',
+    isDivider: false,
+    onClick: mockOnClick,
+    href: '/Dd',
+  },
+  {
+    title: 'Ff',
+    isDivider: false,
+    onClick: mockOnClick,
+    href: '/Ff',
+  },
+];
+const subItemsC = [
+  {
+    title: 'Gg',
+    isDivider: false,
+    onClick: mockOnClick,
+    href: '/Gg',
+  },
+  {
+    title: 'Ii',
+    isDivider: false,
+    onClick: mockOnClick,
+    href: '/Ii',
+  },
+];
+
+const pfItems = [
   {
     title: 'Monitor',
     initialActive: true,
@@ -21,43 +64,6 @@ const PFitems = [
     iconClass: 'fa fa-wrench',
     subItems: subItemsC,
     href: '/c',
-  },
-];
-
-const subItemsA = [
-  {
-    title: 'Aa',
-    isDivider: false,
-    onClick: mockOnClick,
-  },
-  {
-    title: 'Cc',
-    isDivider: false,
-    onClick: mockOnClick,
-  },
-];
-const subItemsB = [
-  {
-    title: 'Dd',
-    isDivider: false,
-    onClick: mockOnClick,
-  },
-  {
-    title: 'Ff',
-    isDivider: false,
-    onClick: mockOnClick,
-  },
-];
-const subItemsC = [
-  {
-    title: 'Gg',
-    isDivider: false,
-    onClick: mockOnClick,
-  },
-  {
-    title: 'Ii',
-    isDivider: false,
-    onClick: mockOnClick,
   },
 ];
 
@@ -227,7 +233,7 @@ const serverUser = {
 };
 
 export const layoutMock = {
-  items: PFitems,
+  items: pfItems,
   activeMenu: 'Monitor',
   data: {
     menu: [...hashItemsA, ...hashItemsB],

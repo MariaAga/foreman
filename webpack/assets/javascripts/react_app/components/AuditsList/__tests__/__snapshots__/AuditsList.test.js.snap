@@ -69,8 +69,6 @@ exports[`AuditsList rendering render resources list 1`] = `
     key="234"
     leftContent={null}
     onCloseCompoundExpand={[Function]}
-    onExpand={[Function]}
-    onExpandClose={[Function]}
     stacked={false}
   >
     <Row

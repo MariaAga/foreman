@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`UserDropdown render 1`] = `
+exports[`UserDropdown rendering render switcher w/loading 1`] = `
 <Fragment>
   <Dropdown
     className=""
