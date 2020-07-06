@@ -35,7 +35,14 @@ const Layout = ({
   };
   const header = (
     <PageHeader
-      logo={<Brand src={data.logo} alt={data.brand} />}
+      logo={
+        <React.Fragment>
+          <Brand src={data.logo} alt={data.brand} />
+          <span className="navbar-brand-txt">
+            <span>{data.brand}</span>
+          </span>
+        </React.Fragment>
+      }
       logoProps={{ href: data.root }}
       showNavToggle
       isManagedSidebar

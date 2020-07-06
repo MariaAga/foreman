@@ -11,10 +11,6 @@
         }
       }
     }
-
-    .pf-c-brand {
-      margin-top: 8px;
-    }
   }
 
   .pf-c-page__sidebar {
@@ -23,6 +19,10 @@
     .pf-c-nav > .pf-c-nav__list {
       .pf-c-nav__link {
         color: $nav-pf-vertical-icon-color;
+
+        &::before {
+          border-color: $nav-pf-vertical-secondary-active-bg-color;
+        }
 
         &.pf-m-current,
         &:active,
