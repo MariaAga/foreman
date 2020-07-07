@@ -73,6 +73,14 @@
       }
     }
   }
+
+  .visible-xs-block {
+    display: none !important;
+
+    @media (max-width: 1002px) {
+      display: block !important;
+    }
+  }
 }
 
 #account_menu {
@@ -85,10 +93,14 @@
 }
 
 .navbar-header {
-  width: 221.22px;
+  width: 42px;
 }
 
-.taxonomy_search {
-  max-width: 92%;
-  margin: 4px 0 4px 8px;
+#navbar-header {
+  left: 42px;
+}
+
+#data-toolbar {
+  padding: 0;
+  background-color: transparent;
 }

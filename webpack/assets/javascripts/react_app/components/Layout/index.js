@@ -42,15 +42,19 @@ const ConnectedLayout = ({ children, data }) => {
         activeMenu: getActiveMenuItem(data.menu).title,
         isCollapsed: isLayoutCollapsed(),
         organization:
-          createInitialTaxonomy(
-            data.orgs.current_org,
-            data.orgs.available_organizations
-          ) || ANY_ORGANIZATION_TAXONOMY,
+          (data.orgs &&
+            createInitialTaxonomy(
+              data.orgs.current_org,
+              data.orgs.available_organizations
+            )) ||
+          ANY_ORGANIZATION_TAXONOMY,
         location:
-          createInitialTaxonomy(
-            data.locations.current_location,
-            data.locations.available_locations
-          ) || ANY_LOCATION_TAXONOMY,
+          (data.locations &&
+            createInitialTaxonomy(
+              data.locations.current_location,
+              data.locations.available_locations
+            )) ||
+          ANY_LOCATION_TAXONOMY,
       })
     );
   }, [data, dispatch]);

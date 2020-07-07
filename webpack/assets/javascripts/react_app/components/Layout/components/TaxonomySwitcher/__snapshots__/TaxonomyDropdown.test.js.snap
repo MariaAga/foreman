@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TaxonomyDropdown rendering 1`] = `
+<CustomContextSelector
+  className=""
+  id="organization-dropdown"
+  isOpen={true}
+  menuAppendTo="inline"
+  onSearchButtonClick={[Function]}
+  onSearchInputChange={[Function]}
+  onSelect={[Function]}
+  onToggle={[Function]}
+  screenReaderLabel="Selected Taxonomy:"
+  searchButtonAriaLabel="Search menu items"
+  searchInputPlaceholder="Search"
+  searchInputValue=""
+  searchProps={
+    Object {
+      "className": "taxonomy_search",
+      "id": "search_taxonomy_organization",
+    }
+  }
+  showFilter={false}
+  staticGroup={
+    Object {
+      "items": Array [
+        Object {
+          "className": "organizations_clear",
+          "href": "/organizations/clear",
+          "onClick": [Function],
+          "title": "Any Organization",
+        },
+        Object {
+          "className": "organization",
+          "href": "/organizations",
+          "title": "Manage Organizations",
+        },
+      ],
+      "title": "Organization",
+    }
+  }
+  toggleText="org1"
+>
+  <ContextSelectorItem
+    className=""
+    isDisabled={false}
+    key="0"
+    onClick={[Function]}
+    sendRef={[Function]}
+  >
+    <a
+      className="organization_menuitem"
+      href="/organizations/1-org1/select"
+      id="select_taxonomy_org1"
+      onClick={[Function]}
+    >
+      org1
+    </a>
+  </ContextSelectorItem>
+  <ContextSelectorItem
+    className=""
+    isDisabled={false}
+    key="1"
+    onClick={[Function]}
+    sendRef={[Function]}
+  >
+    <a
+      className="organization_menuitem"
+      href="/organizations/2-org2/select"
+      id="select_taxonomy_org2"
+      onClick={[Function]}
+    >
+      org2
+    </a>
+  </ContextSelectorItem>
+</CustomContextSelector>
+`;

@@ -140,12 +140,6 @@ const createLocationItem = locations => {
   };
   return locItem;
 };
-export const checkCollapsed = () => {
-  const collapsedState = sessionStorage.getItem(
-    `["navCollapsed","pinnedPath"]`
-  );
-  return !!collapsedState && collapsedState.includes('true');
-};
 
 export const layoutPropTypes = {
   children: PropTypes.node,

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { VerticalNav } from 'patternfly-react';
 import { get } from 'lodash';
 import {
   Dropdown,
@@ -9,11 +8,7 @@ import {
   DropdownSeparator,
 } from '@patternfly/react-core';
 import { UserAltIcon } from '@patternfly/react-icons';
-
-import NotificationContainer from '../../notifications';
-import NavItem from './NavItem';
-import ImpersonateIcon from './ImpersonateIcon';
-import { translate as __ } from '../../../common/I18n';
+import { translate as __ } from '../../../../common/I18n';
 
 const UserDropdowns = ({
   user,
@@ -31,9 +26,6 @@ const UserDropdowns = ({
     setUserDropdownOpen(userDropdownOpen);
   };
   const userInfo = get(user, 'current_user.user');
-  const impersonateIcon = (
-    <ImpersonateIcon stopImpersonationUrl={stopImpersonationUrl} />
-  );
 
   const userDropdownItems = user.user_dropdown[0].children.map((item, i) =>
     item.type === 'divider' ? (
@@ -54,33 +46,24 @@ const UserDropdowns = ({
   );
 
   return (
-    <VerticalNav.IconBar {...props}>
-      <NavItem
-        className="drawer-pf-trigger dropdown notification-dropdown"
-        id="notifications_container"
-      >
-        <NotificationContainer data={{ url: notificationUrl }} />
-      </NavItem>
-      {user.impersonated_by && impersonateIcon}
-      <NavItem id="account_menu" className="pf-c-page__header">
-        {userInfo && (
-          <Dropdown
-            isPlain
-            position="right"
-            onSelect={onDropdownSelect}
-            isOpen={userDropdownOpen}
-            toggle={
-              <DropdownToggle onToggle={onDropdownToggle}>
-                <UserAltIcon className="user-icon" />
-                {userInfo.name}
-              </DropdownToggle>
-            }
-            dropdownItems={userDropdownItems}
-            {...props}
-          />
-        )}
-      </NavItem>
-    </VerticalNav.IconBar>
+    <React.Fragment>
+      {userInfo && (
+        <Dropdown
+          isPlain
+          position="right"
+          onSelect={onDropdownSelect}
+          isOpen={userDropdownOpen}
+          toggle={
+            <DropdownToggle onToggle={onDropdownToggle}>
+              <UserAltIcon className="user-icon" />
+              {userInfo.name}
+            </DropdownToggle>
+          }
+          dropdownItems={userDropdownItems}
+          {...props}
+        />
+      )}
+    </React.Fragment>
   );
 };
 

@@ -20,26 +20,36 @@ describe('Layout integration test', () => {
     await IntegrationTestHelper.flushAllPromises();
     component.update();
 
-    const yamlLocation = component.find('.location_menuitem');
-    const org2Organization = component.find('.organization_menuitem');
-    const hostsMenuItem = component.find('.secondary-nav-item-pf > a');
     integrationTestHelper.takeStoreSnapshot('initial state');
-
+    const hostsMenuItem = component.find('.secondary-nav-item-pf > a');
+    const locationToggle = component.find(
+      '#location-dropdown .pf-c-context-selector__toggle'
+    );
+    const organizationToggle = component.find(
+      '#organization-dropdown .pf-c-context-selector__toggle'
+    );
+    locationToggle.simulate('click');
+    component.update();
+    const yamlLocation = component.find('#select_taxonomy_yaml');
     yamlLocation.at(0).simulate('click');
     integrationTestHelper.takeStoreAndLastActionSnapshot(
       'Location "yaml" clicked'
     );
-    expect(component.find('#location-dropdown > .dropdown-toggle').text()).toBe(
-      'yaml'
-    );
+    expect(
+      component
+        .find('#location-dropdown .pf-c-context-selector__toggle-text')
+        .text()
+    ).toBe('yaml');
 
-    await IntegrationTestHelper.flushAllPromises();
+    organizationToggle.simulate('click');
     component.update();
-
-    org2Organization.at(1).simulate('click');
+    const org2Organization = component.find('#select_taxonomy_org2');
+    org2Organization.at(0).simulate('click');
     integrationTestHelper.takeStoreAndLastActionSnapshot('Org "org2" clicked');
     expect(
-      component.find('#organization-dropdown > .dropdown-toggle').text()
+      component
+        .find('#organization-dropdown .pf-c-context-selector__toggle-text')
+        .text()
     ).toBe('org2');
 
     await IntegrationTestHelper.flushAllPromises();
