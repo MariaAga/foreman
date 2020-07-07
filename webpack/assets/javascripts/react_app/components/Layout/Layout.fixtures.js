@@ -167,6 +167,7 @@ export const hashItemNameless = [
 const logo =
   '/assets/header_logo-c9614c16f2ee399ae9cb7f36ec94b9a26bf8cf9eabaa7fe6099bf80d1f7940db.svg';
 const user = {
+  impersonated_by: true,
   current_user: {
     user: {
       id: 4,
@@ -191,15 +192,6 @@ const organizations = {
   available_organizations: [
     { id: 1, title: 'org1', href: '/organizations/1-org1/select' },
     { id: 2, title: 'org2', href: '/organizations/2-org2/select' },
-  ],
-  many_organizations: [
-    { id: 1, title: 'org1', href: '/organizations/1-org1/select' },
-    { id: 2, title: 'org2', href: '/organizations/2-org2/select' },
-    { id: 3, title: 'org3', href: '/organizations/3-org3/select' },
-    { id: 4, title: 'org4', href: '/organizations/4-org4/select' },
-    { id: 5, title: 'org5', href: '/organizations/5-org5/select' },
-    { id: 6, title: 'org6', href: '/organizations/6-org6/select' },
-    { id: 7, title: 'org7', href: '/organizations/7-org7/select' },
   ],
 };
 

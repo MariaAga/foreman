@@ -1,9 +1,5 @@
 @import "~@theforeman/vendor/scss/variables";
 
-.masthead-icon {
-  margin-top: 4px;
-}
-
 @keyframes blink {
   0% {
     opacity: 1;
@@ -25,7 +21,7 @@
   animation: blink normal 1s infinite ease-in-out; /* Opera and prob css3 final iteration */
 }
 
-.navbar-pf-vertical .nav {
+.navbar-pf-vertical {
   .nav-item-iconic .fa.blink-image {
     color: $color-pf-gold-200;
   }

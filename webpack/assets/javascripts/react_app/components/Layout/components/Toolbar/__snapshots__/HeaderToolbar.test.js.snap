@@ -1,0 +1,148 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeaderToolbar rendering render HeaderToolbar 1`] = `
+<Toolbar
+  id="data-toolbar"
+>
+  <ToolbarContent
+    isExpanded={false}
+    showClearFiltersButton={false}
+  >
+    <ForwardRef
+      className="test-name"
+      spaceItems={
+        Object {
+          "default": "sm",
+        }
+      }
+      visibility={
+        Object {
+          "default": "hidden",
+          "lg": "visible",
+        }
+      }
+    >
+      <TaxonomySwitcher
+        currentLocation="london"
+        currentOrganization="org1"
+        isLoading={false}
+        locations={
+          Array [
+            Object {
+              "href": "/locations/1-yaml/select",
+              "id": 1,
+              "title": "yaml",
+            },
+            Object {
+              "href": "/locations/2-london/select",
+              "id": 2,
+              "title": "london",
+            },
+            Object {
+              "href": "/locations/3-norway/select",
+              "id": 3,
+              "title": "norway",
+            },
+          ]
+        }
+        onLocationClick={[Function]}
+        onOrgClick={[Function]}
+        organizations={
+          Array [
+            Object {
+              "href": "/organizations/1-org1/select",
+              "id": 1,
+              "title": "org1",
+            },
+            Object {
+              "href": "/organizations/2-org2/select",
+              "id": 2,
+              "title": "org2",
+            },
+          ]
+        }
+        taxonomiesBool={
+          Object {
+            "locations": true,
+            "organizations": true,
+          }
+        }
+      />
+    </ForwardRef>
+    <ForwardRef
+      alignment={
+        Object {
+          "default": "alignRight",
+        }
+      }
+      spaceItems={
+        Object {
+          "default": "sm",
+        }
+      }
+      visibility={
+        Object {
+          "default": "hidden",
+          "lg": "visible",
+        }
+      }
+    >
+      <ToolbarItem>
+        <Connect(OnClickOutside(notificationContainer))
+          data={
+            Object {
+              "url": "/notification_recipients",
+            }
+          }
+        />
+      </ToolbarItem>
+      <ToolbarItem>
+        <Connect(ImpersonateIcon)
+          stopImpersonationUrl="/users/stop_impersonation"
+        />
+      </ToolbarItem>
+      <ToolbarItem>
+        <UserDropdowns
+          changeActiveMenu={[Function]}
+          className=""
+          notificationUrl="/notification_recipients"
+          stopImpersonationUrl="/users/stop_impersonation"
+          user={
+            Object {
+              "current_user": Object {
+                "user": Object {
+                  "firstname": "Admin",
+                  "id": 4,
+                  "lastname": "User",
+                  "login": "admin",
+                  "name": "Admin User",
+                },
+              },
+              "impersonated_by": true,
+              "user_dropdown": Array [
+                Object {
+                  "children": Array [
+                    Object {
+                      "isDivider": false,
+                      "onClick": [MockFunction],
+                      "title": "Aa",
+                    },
+                    Object {
+                      "isDivider": false,
+                      "onClick": [MockFunction],
+                      "title": "Cc",
+                    },
+                  ],
+                  "icon": "fa fa-user",
+                  "name": "User",
+                  "type": "sub_menu",
+                },
+              ],
+            }
+          }
+        />
+      </ToolbarItem>
+    </ForwardRef>
+  </ToolbarContent>
+</Toolbar>
+`;

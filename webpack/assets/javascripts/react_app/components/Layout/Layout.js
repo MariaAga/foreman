@@ -9,8 +9,7 @@ import {
   layoutDefaultProps,
 } from './LayoutHelper';
 import LayoutContainer from './components/LayoutContainer';
-import TaxonomySwitcher from './components/TaxonomySwitcher';
-import UserDropdowns from './components/UserDropdowns';
+import HeaderToolbar from './components/Toolbar/HeaderToolbar';
 import './layout.scss';
 
 const Layout = ({
@@ -42,33 +41,22 @@ const Layout = ({
       onExpand={expandLayoutMenus}
     >
       <VerticalNav.Masthead>
-        <VerticalNav.Brand
-          title={data.brand}
-          iconImg={data.logo}
-          href={data.root}
-        />
-        <TaxonomySwitcher
-          taxonomiesBool={data.taxonomies}
-          currentLocation={currentLocation}
-          locations={
-            data.taxonomies.locations ? data.locations.available_locations : []
-          }
-          onLocationClick={changeLocation}
-          currentOrganization={currentOrganization}
-          organizations={
-            data.taxonomies.organizations
-              ? data.orgs.available_organizations
-              : []
-          }
-          onOrgClick={changeOrganization}
-          isLoading={isLoading}
-        />
-        <UserDropdowns
-          notificationUrl={data.notification_url}
-          user={data.user}
-          changeActiveMenu={changeActiveMenu}
-          stopImpersonationUrl={data.stop_impersonation_url}
-        />
+        <header className="pf-c-page__header" id="navbar-header">
+          <VerticalNav.Brand
+            title={data.brand}
+            iconImg={data.logo}
+            href={data.root}
+          />
+          <HeaderToolbar
+            data={data}
+            changeOrganization={changeOrganization}
+            changeLocation={changeLocation}
+            currentOrganization={currentOrganization}
+            currentLocation={currentLocation}
+            isLoading={isLoading}
+            changeActiveMenu={changeActiveMenu}
+          />
+        </header>
       </VerticalNav.Masthead>
     </VerticalNav>
     <LayoutContainer isCollapsed={isCollapsed}>{children}</LayoutContainer>
