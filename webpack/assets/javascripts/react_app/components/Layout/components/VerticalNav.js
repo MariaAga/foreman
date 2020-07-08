@@ -1,7 +1,12 @@
 import React from 'react';
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import { Nav, NavExpandable, NavItem, NavList } from '@patternfly/react-core';
+import {
+  Nav,
+  NavExpandable,
+  NavItem,
+  NavList,
+  NavItemSeparator,
+} from '@patternfly/react-core';
 import {
   getCurrentPath,
   handleMenuClick,
@@ -56,24 +61,25 @@ const VerticalNav = ({
             }
             className={classNames('foreman-nav-expandable', item.className)}
           >
-            {item.subItems.map(
-              subItem =>
-                !subItem.isDivider && (
-                  <NavItem
-                    key={subItem.id || subItem.href}
-                    preventDefault
-                    onClick={() => {
-                      handleMenuClick(item, activeMenu, changeActiveMenu);
-                      navigate(subItem.href);
-                    }}
-                    isActive={
-                      pathFragment(subItem.href) ===
-                      pathFragment(getCurrentPath())
-                    }
-                  >
-                    {subItem.title}
-                  </NavItem>
-                )
+            {item.subItems.map(subItem =>
+              subItem.isDivider ? (
+                <NavItemSeparator />
+              ) : (
+                <NavItem
+                  key={subItem.id || subItem.href}
+                  preventDefault
+                  onClick={() => {
+                    handleMenuClick(item, activeMenu, changeActiveMenu);
+                    navigate(subItem.href);
+                  }}
+                  isActive={
+                    pathFragment(subItem.href) ===
+                    pathFragment(getCurrentPath())
+                  }
+                >
+                  {subItem.title}
+                </NavItem>
+              )
             )}
           </NavExpandable>
         ))}

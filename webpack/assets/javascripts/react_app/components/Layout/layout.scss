@@ -14,32 +14,12 @@
   }
 
   .pf-c-page__sidebar {
-    background-color: $nav-pf-vertical-secondary-active-bg-color;
+    .pf-c-nav__item.pf-m-current > .pf-c-nav__link {
+      background-color: var(--pf-c-nav__link--m-current--BackgroundColor);
+    }
 
-    .pf-c-nav > .pf-c-nav__list {
-      .pf-c-nav__link {
-        color: $nav-pf-vertical-icon-color;
-
-        &::before {
-          border-color: $nav-pf-vertical-secondary-active-bg-color;
-        }
-
-        &.pf-m-current,
-        &:active,
-        &:hover {
-          background-color: $nav-pf-vertical-active-bg-color;
-          color: $nav-pf-vertical-active-icon-color;
-        }
-      }
-
-      .pf-c-nav__item.pf-m-current > .pf-c-nav__link,
-      .pf-c-nav__item > .pf-c-nav__link.pf-m-current {
-        background-color: $nav-pf-vertical-active-bg-color;
-      }
-
-      .pf-c-nav__item.pf-m-current > .pf-c-nav__link .nav-title-icon {
-        color: $nav-pf-vertical-active-icon-color;
-      }
+    .pf-c-nav__item.pf-m-current > .pf-c-nav__link .nav-title-icon {
+      color: var(--pf-c-nav__link--active--Color);
     }
   }
 

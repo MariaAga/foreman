@@ -34,7 +34,7 @@
 }
 
 .navbar-pf-vertical {
-  background: $topbar-default-color image-url('navbar.png');
+  background: var(--pf-c-page__header--BackgroundColor) image-url('navbar.png');
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
