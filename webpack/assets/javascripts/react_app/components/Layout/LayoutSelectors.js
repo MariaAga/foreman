@@ -37,7 +37,7 @@ const childToMenuItem = (child, currentLocation, currentOrganization) => ({
 const patternflyItems = (data, currentLocation, currentOrganization) =>
   data.map(item => {
     const childrenArray = item.children
-      .filter(child => child.name)
+      .filter(child => child.name || child.type === 'divider')
       .map(child =>
         childToMenuItem(child, currentLocation, currentOrganization)
       );
