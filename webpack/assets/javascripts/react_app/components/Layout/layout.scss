@@ -1,75 +1,44 @@
 @import '../../common/colors.scss';
 
-.secondary-nav-item-pf > .nav-pf-secondary-nav {
-  background-color: $nav-pf-vertical-active-bg-color;
+.pf-c-page.foreman-theme {
+  .pf-c-page__header {
+    .pf-c-toolbar {
+      background-color: transparent;
 
-  .mobile-active {
-    // Mark active Location/Org in Mobile view
-    a {
-      .list-group-item-value {
-        background-color: $nav-pf-vertical-secondary-active-bg-color;
+      .pf-c-toolbar__item {
+        @media (max-width: 1002px) {
+          display: none !important;
+        }
       }
     }
   }
 
-  .list-group-item {
-    a {
-      background-color: $nav-pf-vertical-active-bg-color;
+  .pf-c-page__sidebar {
+    background-color: $nav-pf-vertical-secondary-active-bg-color;
 
-      &:hover {
-        .list-group-item-value {
-          background-color: $nav-pf-vertical-secondary-active-bg-color;
-        }
-      }
-    }
+    .pf-c-nav > .pf-c-nav__list {
+      .pf-c-nav__link {
+        color: $nav-pf-vertical-icon-color;
 
-    span {
-      color: $nav-pf-vertical-active-icon-color;
-    }
-  }
-}
-
-#react-app-root > .nav-pf-vertical {
-  background-color: $nav-pf-vertical-secondary-active-bg-color;
-
-  .list-group {
-    .list-group-item {
-      a {
-        span {
-          color: $nav-pf-vertical-icon-color;
+        &::before {
+          border-color: $nav-pf-vertical-secondary-active-bg-color;
         }
 
+        &.pf-m-current,
+        &:active,
         &:hover {
           background-color: $nav-pf-vertical-active-bg-color;
-
-          span {
-            color: $nav-pf-vertical-active-icon-color;
-          }
-        }
-
-        &::after {
-          color: $nav-pf-vertical-icon-color;
+          color: $nav-pf-vertical-active-icon-color;
         }
       }
 
-      &:hover {
-        a {
-          background-color: $nav-pf-vertical-active-bg-color;
-
-          span {
-            color: $nav-pf-vertical-active-icon-color;
-          }
-        }
+      .pf-c-nav__item.pf-m-current > .pf-c-nav__link,
+      .pf-c-nav__item > .pf-c-nav__link.pf-m-current {
+        background-color: $nav-pf-vertical-active-bg-color;
       }
 
-      &.active {
-        a {
-          background-color: $nav-pf-vertical-active-bg-color;
-
-          span {
-            color: $nav-pf-vertical-active-icon-color;
-          }
-        }
+      .pf-c-nav__item.pf-m-current > .pf-c-nav__link .nav-title-icon {
+        color: $nav-pf-vertical-active-icon-color;
       }
     }
   }

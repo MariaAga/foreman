@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { ConnectedRouter } from 'connected-react-router';
 import history from '../history';
 import { getForemanContext } from '../Root/Context/ForemanContext';
-import Layout, { propTypes as LayoutPropTypes } from '../components/Layout';
+import Layout from '../components/Layout';
+import { layoutPropTypes } from '../components/Layout/LayoutHelper';
 import AppSwitcher from '../routes';
 
 const ReactApp = ({ data: { layout, metadata, toasts } }) => {
@@ -23,7 +24,7 @@ const ReactApp = ({ data: { layout, metadata, toasts } }) => {
 
 ReactApp.propTypes = {
   data: PropTypes.shape({
-    layout: LayoutPropTypes.data.isRequired,
+    layout: layoutPropTypes.data,
     metadata: PropTypes.object.isRequired,
     toasts: PropTypes.array.isRequired,
   }).isRequired,

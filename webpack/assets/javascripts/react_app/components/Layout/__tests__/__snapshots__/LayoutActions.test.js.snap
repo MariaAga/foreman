@@ -9,6 +9,15 @@ Object {
 }
 `;
 
+exports[`Layout actions should changeIsNavOpen 1`] = `
+Object {
+  "payload": Object {
+    "isNavOpen": false,
+  },
+  "type": "LAYOUT_CHANGE_IS_NAV_OPEN",
+}
+`;
+
 exports[`Layout actions should changeLocation 1`] = `
 Object {
   "payload": Object {
@@ -27,18 +36,6 @@ Object {
 }
 `;
 
-exports[`Layout actions should collapseLayoutMenus 1`] = `
-Object {
-  "type": "LAYOUT_COLLAPSE",
-}
-`;
-
-exports[`Layout actions should expandLayoutMenus 1`] = `
-Object {
-  "type": "LAYOUT_EXPAND",
-}
-`;
-
 exports[`Layout actions should hideLoading 1`] = `
 Object {
   "type": "LAYOUT_HIDE_LOADING",
@@ -49,7 +46,6 @@ exports[`Layout actions should initialize the layout 1`] = `
 Object {
   "payload": Object {
     "activeMenu": "some active menu",
-    "isCollapsed": false,
     "items": "some items",
     "location": "loc2",
     "organization": "org1",

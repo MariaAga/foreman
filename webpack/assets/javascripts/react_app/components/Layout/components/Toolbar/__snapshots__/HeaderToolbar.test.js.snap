@@ -9,7 +9,6 @@ exports[`HeaderToolbar rendering render HeaderToolbar 1`] = `
     showClearFiltersButton={false}
   >
     <ForwardRef
-      className="test-name"
       spaceItems={
         Object {
           "default": "sm",
@@ -123,11 +122,13 @@ exports[`HeaderToolbar rendering render HeaderToolbar 1`] = `
                 Object {
                   "children": Array [
                     Object {
+                      "href": "/Aa",
                       "isDivider": false,
                       "onClick": [MockFunction],
                       "title": "Aa",
                     },
                     Object {
+                      "href": "/Cc",
                       "isDivider": false,
                       "onClick": [MockFunction],
                       "title": "Cc",

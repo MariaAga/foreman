@@ -1,0 +1,96 @@
+import React from 'react';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { Nav, NavExpandable, NavItem, NavList } from '@patternfly/react-core';
+import {
+  getCurrentPath,
+  handleMenuClick,
+  layoutPropTypes,
+  layoutDefaultProps,
+} from '../LayoutHelper';
+import './VerticalNav.scss';
+
+// checkPropTypes will throw a warning:
+// Warning: Failed prop type: Invalid prop `title` of type `object` supplied to `NavExpandable`, expected `string`.
+// This is expected until PatternFly is updated to accept ReactNode instead of just string for the title
+const titleWithIcon = (title, iconClass) => (
+  <React.Fragment>
+    <span className={classNames(iconClass, 'nav-title-icon')} />
+    <span className="nav-title">{title}</span>
+  </React.Fragment>
+);
+
+const VerticalNav = ({
+  items,
+  activeMenu,
+  changeActiveMenu,
+  navigate,
+  ...props
+}) => {
+  const pathFragment = path => path.split('?')[0];
+
+  // the pages outside of React don't have activeMenu information.
+  // workaround is to build our own mapping that we can reference for the nav
+  const subItemToItemMap = {};
+  items.forEach(item => {
+    item.subItems.forEach(subItem => {
+      if (!subItem.isDivider) {
+        // don't keep the query parameters for the key
+        subItemToItemMap[pathFragment(subItem.href)] = item.title;
+      }
+    });
+  });
+
+  return (
+    <Nav {...props}>
+      <NavList>
+        {items.map(item => (
+          <NavExpandable
+            key={item.title}
+            title={titleWithIcon(item.title, item.iconClass)}
+            isActive={
+              subItemToItemMap[pathFragment(getCurrentPath())] === item.title
+            }
+            isExpanded={
+              subItemToItemMap[pathFragment(getCurrentPath())] === item.title
+            }
+            className={classNames('foreman-nav-expandable', item.className)}
+          >
+            {item.subItems.map(
+              subItem =>
+                !subItem.isDivider && (
+                  <NavItem
+                    key={subItem.id || subItem.href}
+                    preventDefault
+                    onClick={() => {
+                      handleMenuClick(item, activeMenu, changeActiveMenu);
+                      navigate(subItem.href);
+                    }}
+                    isActive={
+                      pathFragment(subItem.href) ===
+                      pathFragment(getCurrentPath())
+                    }
+                  >
+                    {subItem.title}
+                  </NavItem>
+                )
+            )}
+          </NavExpandable>
+        ))}
+      </NavList>
+    </Nav>
+  );
+};
+VerticalNav.propTypes = {
+  activeMenu: layoutPropTypes.activeMenu,
+  changeActiveMenu: layoutPropTypes.changeActiveMenu,
+  navigate: layoutPropTypes.navigate,
+  items: layoutPropTypes.items,
+};
+VerticalNav.defaultProps = {
+  activeMenu: layoutDefaultProps.activeMenu,
+  changeActiveMenu: layoutDefaultProps.changeActiveMenu,
+  items: layoutDefaultProps.items,
+  navigate: layoutDefaultProps.navigate,
+};
+export default VerticalNav;

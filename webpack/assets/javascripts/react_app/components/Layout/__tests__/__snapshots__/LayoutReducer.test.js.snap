@@ -9,8 +9,23 @@ Object {
   "currentOrganization": Object {
     "title": "Any Organization",
   },
-  "isCollapsed": false,
   "isLoading": false,
+  "isNavOpen": true,
+  "items": Array [],
+}
+`;
+
+exports[`Layout reducer should handle LAYOUT_CHANGE_IS_NAV_OPEN 1`] = `
+Object {
+  "activeMenu": "initialActive",
+  "currentLocation": Object {
+    "title": "Any Location",
+  },
+  "currentOrganization": Object {
+    "title": "Any Organization",
+  },
+  "isLoading": false,
+  "isNavOpen": false,
   "items": Array [],
 }
 `;
@@ -22,8 +37,8 @@ Object {
   "currentOrganization": Object {
     "title": "Any Organization",
   },
-  "isCollapsed": false,
   "isLoading": false,
+  "isNavOpen": true,
   "items": Array [],
 }
 `;
@@ -35,38 +50,8 @@ Object {
     "title": "Any Location",
   },
   "currentOrganization": "org1",
-  "isCollapsed": false,
   "isLoading": false,
-  "items": Array [],
-}
-`;
-
-exports[`Layout reducer should handle LAYOUT_COLLAPSE 1`] = `
-Object {
-  "activeMenu": "initialActive",
-  "currentLocation": Object {
-    "title": "Any Location",
-  },
-  "currentOrganization": Object {
-    "title": "Any Organization",
-  },
-  "isCollapsed": true,
-  "isLoading": false,
-  "items": Array [],
-}
-`;
-
-exports[`Layout reducer should handle LAYOUT_EXPAND 1`] = `
-Object {
-  "activeMenu": "initialActive",
-  "currentLocation": Object {
-    "title": "Any Location",
-  },
-  "currentOrganization": Object {
-    "title": "Any Organization",
-  },
-  "isCollapsed": false,
-  "isLoading": false,
+  "isNavOpen": true,
   "items": Array [],
 }
 `;
@@ -80,8 +65,8 @@ Object {
   "currentOrganization": Object {
     "title": "Any Organization",
   },
-  "isCollapsed": false,
   "isLoading": false,
+  "isNavOpen": true,
   "items": Array [],
 }
 `;
@@ -91,8 +76,8 @@ Object {
   "activeMenu": "some-menu",
   "currentLocation": "some location",
   "currentOrganization": "some organization",
-  "isCollapsed": true,
   "isLoading": false,
+  "isNavOpen": true,
   "items": "some-items",
 }
 `;
@@ -106,8 +91,8 @@ Object {
   "currentOrganization": Object {
     "title": "Any Organization",
   },
-  "isCollapsed": false,
   "isLoading": true,
+  "isNavOpen": true,
   "items": Array [],
 }
 `;
@@ -121,8 +106,8 @@ Object {
   "currentOrganization": Object {
     "title": "Any Organization",
   },
-  "isCollapsed": false,
   "isLoading": false,
+  "isNavOpen": true,
   "items": Array [],
 }
 `;

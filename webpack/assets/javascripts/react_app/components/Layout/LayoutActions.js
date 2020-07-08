@@ -5,14 +5,12 @@ import {
   LAYOUT_CHANGE_LOCATION,
   LAYOUT_CHANGE_ACTIVE,
   LAYOUT_CHANGE_ORG,
-  LAYOUT_EXPAND,
-  LAYOUT_COLLAPSE,
+  LAYOUT_CHANGE_IS_NAV_OPEN,
 } from './LayoutConstants';
 
 export const initializeLayout = ({
   items,
   activeMenu,
-  isCollapsed,
   organization,
   location,
 }) => ({
@@ -20,7 +18,6 @@ export const initializeLayout = ({
   payload: {
     items,
     activeMenu,
-    isCollapsed,
     organization,
     location,
   },
@@ -53,10 +50,9 @@ export const changeLocation = location => ({
   },
 });
 
-export const expandLayoutMenus = () => ({
-  type: LAYOUT_EXPAND,
-});
-
-export const collapseLayoutMenus = () => ({
-  type: LAYOUT_COLLAPSE,
+export const changeIsNavOpen = isNavOpen => ({
+  type: LAYOUT_CHANGE_IS_NAV_OPEN,
+  payload: {
+    isNavOpen,
+  },
 });
