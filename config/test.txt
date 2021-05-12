@@ -1,0 +1,156 @@
+                                                                                             Asset       Size  Chunks                    Chunk Names
+                                                                        foreman_rh_cloud:global.js    14.4 MB       0  [emitted]  [big]  foreman_rh_cloud:global
+                                                                               foreman_rh_cloud.js    14.3 MB       1  [emitted]  [big]  foreman_rh_cloud
+                                                                foreman_remote_execution:global.js    9.99 MB       2  [emitted]  [big]  foreman_remote_execution:global
+                                                                                        katello.js    8.78 MB       3  [emitted]  [big]  katello
+                                                                                foreman_ansible.js    5.07 MB       4  [emitted]  [big]  foreman_ansible
+                                                                                  foreman-tasks.js    7.16 MB       5  [emitted]  [big]  foreman-tasks
+                                                                              foreman_templates.js    4.66 MB       6  [emitted]  [big]  foreman_templates
+                                                                                         bundle.js    4.75 MB       7  [emitted]  [big]  bundle
+                                                                       foreman_remote_execution.js    4.52 MB       8  [emitted]  [big]  foreman_remote_execution
+                                                                                  katello:fills.js    4.48 MB       9  [emitted]  [big]  katello:fills
+                                                                              foreman_discovery.js    4.47 MB      10  [emitted]  [big]  foreman_discovery
+                                                                        foreman_webhooks:routes.js    3.88 MB      11  [emitted]  [big]  foreman_webhooks:routes
+                                                                 foreman_remote_execution:fills.js    3.53 MB      12  [emitted]  [big]  foreman_remote_execution:fills
+                                                                                 katello:common.js    3.57 MB      13  [emitted]  [big]  katello:common
+                                                                               foreman_webhooks.js  497 bytes      14  [emitted]         foreman_webhooks
+                                                                                         vendor.js    1.79 MB      15  [emitted]  [big]  vendor
+                                                                                        bundle.css     541 kB       7  [emitted]  [big]  bundle
+                                                                                 foreman-tasks.css     578 kB       5  [emitted]  [big]  foreman-tasks
+                                                                foreman_remote_execution:fills.css     410 kB      12  [emitted]  [big]  foreman_remote_execution:fills
+                                                               foreman_remote_execution:global.css     530 kB       2  [emitted]  [big]  foreman_remote_execution:global
+                                                                      foreman_remote_execution.css     529 kB       8  [emitted]  [big]  foreman_remote_execution
+                                                                               foreman_ansible.css     547 kB       4  [emitted]  [big]  foreman_ansible
+                                                                             foreman_discovery.css     528 kB      10  [emitted]  [big]  foreman_discovery
+                                                                                 katello:fills.css     528 kB       9  [emitted]  [big]  katello:fills
+                                                                                       katello.css     620 kB       3  [emitted]  [big]  katello
+                                                                              foreman_rh_cloud.css     719 kB       1  [emitted]  [big]  foreman_rh_cloud
+                                                                       foreman_rh_cloud:global.css     719 kB       0  [emitted]  [big]  foreman_rh_cloud:global
+                                                                             foreman_templates.css     547 kB       6  [emitted]  [big]  foreman_templates
+                                                                       foreman_webhooks:routes.css     480 kB      11  [emitted]  [big]  foreman_webhooks:routes
+           fonts/RedHatDisplay-Bold.bundle-v8.4.5-development-b72e57f15dfaf4157a980a740627cc3e.eot    33.8 kB          [emitted]         
+         fonts/RedHatDisplay-Medium.bundle-v8.4.5-development-ef5f146c72536d0ee141b7842d35232f.eot    33.2 kB          [emitted]         
+        fonts/RedHatDisplay-Medium.bundle-v8.4.5-development-f656301e2dfcef614e89c5f21d0af14c.woff    36.5 kB          [emitted]         
+          fonts/RedHatDisplay-Bold.bundle-v8.4.5-development-ef99e280304ea3618ad53b776a6e6710.woff    36.9 kB          [emitted]         
+       fonts/RedHatDisplay-Regular.bundle-v8.4.5-development-3c2eb037a1ad95544048c39130869246.woff    36.4 kB          [emitted]         
+        fonts/RedHatDisplay-Regular.bundle-v8.4.5-development-93ba369e49357aef8c46c49d0868cf38.eot    33.1 kB          [emitted]         
+            fonts/RedHatText-Medium.bundle-v8.4.5-development-1859370a8d5451ab2c4d2f3dccfaf605.eot    33.9 kB          [emitted]         
+           fonts/RedHatText-Medium.bundle-v8.4.5-development-ed5d521b0d005e0d5bb6535b2755e5fa.woff    37.1 kB          [emitted]         
+           fonts/RedHatText-Regular.bundle-v8.4.5-development-74d94f035e1f20334a0d982c6f27553f.eot    32.6 kB          [emitted]         
+          fonts/RedHatText-Regular.bundle-v8.4.5-development-4202115caac7ac285cce0db690aeabdd.woff      36 kB          [emitted]         
+               fonts/fa-solid-900.bundle-v8.4.5-development-5dc01cfcd5336f696cb85da7ce53fa9b.woff2    79.1 kB          [emitted]         
+                 fonts/fa-solid-900.bundle-v8.4.5-development-2e302fa4c6eeb1bc06149067bae3e7b4.eot     209 kB          [emitted]         
+                fonts/fa-solid-900.bundle-v8.4.5-development-a8eedaadb16b569a48a061d4aafa2d2e.woff     102 kB          [emitted]         
+       fonts/overpass-bold-italic.bundle-v8.4.5-development-a3014aca2b9a1fcb2cc6582f1098b670.woff2    37.3 kB          [emitted]         
+                 fonts/fa-solid-900.bundle-v8.4.5-development-80c404ff42e52d9e7589e83fe21307b4.ttf     209 kB          [emitted]         
+        fonts/overpass-bold-italic.bundle-v8.4.5-development-c0b5bb3c204bbaf30c3f74a819ad1359.woff    45.1 kB          [emitted]         
+         fonts/overpass-bold-italic.bundle-v8.4.5-development-a7525e625ac371ac743ffc8bbf403926.ttf    95.1 kB          [emitted]         
+                fonts/overpass-bold.bundle-v8.4.5-development-03f13d81b488f92c21ecfb7dc0b44b69.ttf    91.5 kB          [emitted]         
+         fonts/overpass-bold-italic.bundle-v8.4.5-development-ad84fcd454b2f42462f4f032220e8b66.eot      43 kB          [emitted]         
+                fonts/overpass-bold.bundle-v8.4.5-development-1be69fa39578d84194df1f38750a695e.eot      40 kB          [emitted]         
+    fonts/overpass-extrabold-italic.bundle-v8.4.5-development-0e4f5b1279c209e8905aac206736c642.eot    42.4 kB          [emitted]         
+               fonts/overpass-bold.bundle-v8.4.5-development-c6179bc8859c2d8204ea5cd91eb273fd.woff    42.1 kB          [emitted]         
+   fonts/overpass-extrabold-italic.bundle-v8.4.5-development-83caef4a65c9e63b968c86ced8499fde.woff    44.4 kB          [emitted]         
+    fonts/overpass-extrabold-italic.bundle-v8.4.5-development-1120bb046719cbe11118353b4e6b3c5d.ttf    95.5 kB          [emitted]         
+          fonts/overpass-extrabold.bundle-v8.4.5-development-1168ce1e3240bc64b78a1d72d229248b.woff    41.4 kB          [emitted]         
+  fonts/overpass-extrabold-italic.bundle-v8.4.5-development-cd4ba35288154e141970671585789723.woff2    36.7 kB          [emitted]         
+           fonts/overpass-extrabold.bundle-v8.4.5-development-5174bc0eba82c8240c4c89b177694d7f.ttf    90.4 kB          [emitted]         
+              fonts/overpass-bold.bundle-v8.4.5-development-d031db257d73529c5acdebe8dcd39eec.woff2    34.8 kB          [emitted]         
+           fonts/overpass-extrabold.bundle-v8.4.5-development-b184d3d7f7a6f7c8b6e2fd6ea381c6ff.eot    39.2 kB          [emitted]         
+         fonts/overpass-extrabold.bundle-v8.4.5-development-6e768ba3bbc1126ec063c6c822683385.woff2    33.8 kB          [emitted]         
+ fonts/overpass-extralight-italic.bundle-v8.4.5-development-85914371311290963e05d071b3d0f2f3.woff2    36.8 kB          [emitted]         
+   fonts/overpass-extralight-italic.bundle-v8.4.5-development-07d68df8fff07c03aadbb958258c59c2.ttf    95.6 kB          [emitted]         
+          fonts/overpass-extralight.bundle-v8.4.5-development-453031be9ce19d460237c2b0faecd280.eot    40.6 kB          [emitted]         
+  fonts/overpass-extralight-italic.bundle-v8.4.5-development-b4ac9dd8dd238325ded1620f00c0e65f.woff    44.7 kB          [emitted]         
+          fonts/overpass-extralight.bundle-v8.4.5-development-7a42efd168f859fc130d5c93a1c2d303.ttf      93 kB          [emitted]         
+   fonts/overpass-extralight-italic.bundle-v8.4.5-development-5a7110dd7245e003a85323d12a744096.eot    42.6 kB          [emitted]         
+         fonts/overpass-extralight.bundle-v8.4.5-development-86fd9ea353c5a35772032b38d680434f.woff    42.5 kB          [emitted]         
+        fonts/overpass-extralight.bundle-v8.4.5-development-c57919955361197360a9090885f1d63a.woff2    35.1 kB          [emitted]         
+      fonts/overpass-heavy-italic.bundle-v8.4.5-development-77a29c6cd1026169985b68e493ef81cd.woff2      38 kB          [emitted]         
+        fonts/overpass-heavy-italic.bundle-v8.4.5-development-e171c10c03e6015eb71ff061c5a0347b.eot    43.9 kB          [emitted]         
+       fonts/overpass-heavy-italic.bundle-v8.4.5-development-9a846a9712763d68e45f9f2b46a6f73f.woff    45.7 kB          [emitted]         
+        fonts/overpass-heavy-italic.bundle-v8.4.5-development-fc408a5c5014e375bf8143252d3eefdd.ttf    96.2 kB          [emitted]         
+               fonts/overpass-heavy.bundle-v8.4.5-development-196bf61d62a8d73b4212d68d12618080.ttf    92.5 kB          [emitted]         
+             fonts/overpass-heavy.bundle-v8.4.5-development-33b983b61df516ec2f89722682be3a7d.woff2    35.6 kB          [emitted]         
+               fonts/overpass-heavy.bundle-v8.4.5-development-7fe4082dcd3407736f2d829a7422a4cd.eot    41.2 kB          [emitted]         
+              fonts/overpass-heavy.bundle-v8.4.5-development-42aa590b04256ce9d1c9bfc1d095eb77.woff    43.3 kB          [emitted]         
+              fonts/overpass-italic.bundle-v8.4.5-development-6a8cb2944109bb2546ee40a74b880a2e.eot    43.2 kB          [emitted]         
+             fonts/overpass-italic.bundle-v8.4.5-development-0010a44ba08c83b983cccf8eaeacc6d2.woff    45.2 kB          [emitted]         
+       fonts/overpass-light-italic.bundle-v8.4.5-development-5b90b7262115867d3791a3dd14f5796c.woff    44.4 kB          [emitted]         
+        fonts/overpass-light-italic.bundle-v8.4.5-development-14564a083548d2eddba2acd49d13dbf5.eot    42.3 kB          [emitted]         
+              fonts/overpass-italic.bundle-v8.4.5-development-5f705c0eacec30c02b88ceda30dafd91.ttf    95.8 kB          [emitted]         
+        fonts/overpass-light-italic.bundle-v8.4.5-development-df98f8354e5a3415e8dd5d70044a2ca7.ttf    95.4 kB          [emitted]         
+      fonts/overpass-light-italic.bundle-v8.4.5-development-6715ec5e5fe77a8cd8336851166ba263.woff2    36.6 kB          [emitted]         
+               fonts/overpass-light.bundle-v8.4.5-development-b065f90571bee28eaf4a93fc1966055a.eot      40 kB          [emitted]         
+            fonts/overpass-italic.bundle-v8.4.5-development-f45ba39e8e15bccd69fe5981c55469c8.woff2    37.4 kB          [emitted]         
+               fonts/overpass-light.bundle-v8.4.5-development-f3914c0c1fcea8d17cfac1b219888171.ttf    92.4 kB          [emitted]         
+           fonts/overpass-mono-bold.bundle-v8.4.5-development-525102cde5c9e2b15c79baa990dcecdc.ttf     133 kB          [emitted]         
+             fonts/overpass-light.bundle-v8.4.5-development-c97e1959c8dd50cb12d0e7fb231d166b.woff2    34.5 kB          [emitted]         
+              fonts/overpass-light.bundle-v8.4.5-development-3875601d3d9f38dbed024edb0204d27c.woff    41.9 kB          [emitted]         
+           fonts/overpass-mono-bold.bundle-v8.4.5-development-433b5c735a83e1008f95179c8b962a61.eot    58.7 kB          [emitted]         
+         fonts/overpass-mono-bold.bundle-v8.4.5-development-6cb4a77b69c24c4951adf26828f5535e.woff2    51.6 kB          [emitted]         
+          fonts/overpass-mono-bold.bundle-v8.4.5-development-75f6145e1d3aad4e40ef7234cabe7ba8.woff    65.1 kB          [emitted]         
+          fonts/overpass-mono-light.bundle-v8.4.5-development-326c58fb540e10f0eb8dc0f93c273379.eot    57.2 kB          [emitted]         
+         fonts/overpass-mono-light.bundle-v8.4.5-development-773ec666863a308b9ec62792bb17796d.woff    63.3 kB          [emitted]         
+      fonts/overpass-mono-regular.bundle-v8.4.5-development-052fe015624572a027b61fae5a1693eb.woff2    51.5 kB          [emitted]         
+          fonts/overpass-mono-light.bundle-v8.4.5-development-3be32ac5d139e12b4032a55bf0b8bd09.ttf     132 kB          [emitted]         
+        fonts/overpass-mono-regular.bundle-v8.4.5-development-88c46de6d154343bda46be984964328d.ttf     133 kB          [emitted]         
+        fonts/overpass-mono-regular.bundle-v8.4.5-development-96c8503e02dba70990ba8ba1802db064.eot    58.7 kB          [emitted]         
+       fonts/overpass-mono-regular.bundle-v8.4.5-development-cf00f67f5419223329ad2dd594e0b493.woff      65 kB          [emitted]         
+     fonts/overpass-mono-semibold.bundle-v8.4.5-development-b199b8f988800fb4d2b6595f02e01b0c.woff2    51.3 kB          [emitted]         
+        fonts/overpass-mono-light.bundle-v8.4.5-development-d34d136b1c83daed74aad1864bba8f20.woff2    50.1 kB          [emitted]         
+      fonts/overpass-mono-semibold.bundle-v8.4.5-development-404c69d498c28cf0b4f209494a2ac8dc.woff    64.9 kB          [emitted]         
+       fonts/overpass-mono-semibold.bundle-v8.4.5-development-3eade9d06f8bde617299a9ca119edccc.ttf     133 kB          [emitted]         
+             fonts/overpass-regular.bundle-v8.4.5-development-7053cc87b4117ab469f6c9c175605009.eot    40.7 kB          [emitted]         
+       fonts/overpass-mono-semibold.bundle-v8.4.5-development-b430c0bcc57dcee00958b0dc9cebf166.eot    58.5 kB          [emitted]         
+           fonts/overpass-regular.bundle-v8.4.5-development-02d9e0efaf201bac227adcaa69993577.woff2    35.1 kB          [emitted]         
+     fonts/overpass-semibold-italic.bundle-v8.4.5-development-73eb8e6dadce67affd157082cd5e30b2.eot    42.8 kB          [emitted]         
+   fonts/overpass-semibold-italic.bundle-v8.4.5-development-d91e16a14ee429731582ec3cffeeff5b.woff2    36.9 kB          [emitted]         
+     fonts/overpass-semibold-italic.bundle-v8.4.5-development-4e4b8fd42c4883964b5be13e3f2b0c10.ttf    95.3 kB          [emitted]         
+             fonts/overpass-regular.bundle-v8.4.5-development-f3dbad81d05598ab77cd089ae6fa4c45.ttf    92.7 kB          [emitted]         
+            fonts/overpass-regular.bundle-v8.4.5-development-7b93997b0cacf3a750094f1f23da6f64.woff    42.6 kB          [emitted]         
+    fonts/overpass-semibold-italic.bundle-v8.4.5-development-e244fb9672110d1dca7d1d2e8b80b766.woff    44.7 kB          [emitted]         
+            fonts/overpass-semibold.bundle-v8.4.5-development-5ee7acc2dc17284f568009e35c5e7f0e.eot    38.5 kB          [emitted]         
+          fonts/overpass-semibold.bundle-v8.4.5-development-ca8341201f84fb37c3f6ada7068e6811.woff2    33.4 kB          [emitted]         
+            fonts/overpass-semibold.bundle-v8.4.5-development-aabbde80cc8799cb7d1e09577c20c64f.ttf    90.1 kB          [emitted]         
+       fonts/overpass-thin-italic.bundle-v8.4.5-development-16380cc4c2e42c7d9b56e7e0bd114b48.woff2    35.9 kB          [emitted]         
+         fonts/overpass-thin-italic.bundle-v8.4.5-development-a452cd382d3b322381d36aa1b89b5090.eot    41.4 kB          [emitted]         
+           fonts/overpass-semibold.bundle-v8.4.5-development-ec228a396b9420f7dd003b59a8173db8.woff    40.6 kB          [emitted]         
+              fonts/overpass-thin.bundle-v8.4.5-development-8c022f6de72fa7d302ca54fe8f526c7d.woff2    33.7 kB          [emitted]         
+               fonts/overpass-thin.bundle-v8.4.5-development-94f49172716aaf6567ad9f4c9dbaa3a9.woff    40.9 kB          [emitted]         
+                fonts/overpass-thin.bundle-v8.4.5-development-964a9d1dbdcdc219d81bda151ebd90f1.eot    38.8 kB          [emitted]         
+                       fonts/pficon.bundle-v8.4.5-development-2c4dad0b778fe54e130d03d613f4db59.svg     172 kB          [emitted]         
+                       fonts/pficon.bundle-v8.4.5-development-55a82a2f8200b3b462ba6a65782fa509.ttf      36 kB          [emitted]         
+         fonts/overpass-thin-italic.bundle-v8.4.5-development-2ad7b693135f5c469b19f270e1e4fbf6.ttf    94.8 kB          [emitted]         
+        fonts/overpass-thin-italic.bundle-v8.4.5-development-849bc426e370a1e78ab9a76a92c982bb.woff    43.5 kB          [emitted]         
+                       fonts/pficon.bundle-v8.4.5-development-d5a7c1219e0a48f6affe973852cc1fb0.eot    36.2 kB          [emitted]         
+                fonts/overpass-thin.bundle-v8.4.5-development-69bb205a94662a2fcf7014274d28d3b0.ttf    90.8 kB          [emitted]         
+                     fonts/pficon.bundle-v8.4.5-development-ecd431f0bfce2ea954aa919c2ec3a0f0.woff2    16.6 kB          [emitted]         
+                      fonts/pficon.bundle-v8.4.5-development-f69d23d9980dc447c0e042b912ba7f30.woff    19.8 kB          [emitted]         
+                 images/pfbg_576@2x.bundle-v8.4.5-development-b48e77bc91c0f0efd6d70d8bc1fdd303.jpg     196 kB          [emitted]         
+                    images/pfbg_768.bundle-v8.4.5-development-c983971754d12d6d72483d87da6cbafc.jpg     117 kB          [emitted]         
+                    images/pfbg_576.bundle-v8.4.5-development-85341a9c100625a9129bb92ea921247f.jpg    67.5 kB          [emitted]         
+                 fonts/fa-solid-900.bundle-v8.4.5-development-27603739fe78fee587c7b84873475b61.svg     794 kB          [emitted]  [big]  
+                   images/pfbg_2000.bundle-v8.4.5-development-4f5989446497f0ee3c379ee231879111.jpg     276 kB          [emitted]  [big]  
+                 images/pfbg_768@2x.bundle-v8.4.5-development-0099dea36b1077b3c38f031b7607c1f3.jpg     362 kB          [emitted]  [big]  
+                 images/pfbg_992@2x.bundle-v8.4.5-development-1423e11ee9ff3dac6d2ced2ca15eb650.jpg     589 kB          [emitted]  [big]  
+                                 foreman-vendor.bundle-v8.4.5-development-a9af4c0e9bb8012529a2.css    2.04 MB          [emitted]  [big]  
+                             foreman-vendor.bundle-v8.4.5-development-a9af4c0e9bb8012529a2.css.map    2.35 MB          [emitted]         
+                              foreman-vendor.bundle-v8.4.5-development-a9af4c0e9bb8012529a2.js.map    23.9 MB          [emitted]         
+                                  foreman-vendor.bundle-v8.4.5-development-a9af4c0e9bb8012529a2.js    32.5 MB          [emitted]  [big]  
+                                                                                     manifest.json    1.78 kB          [emitted]         
+ [2735] multi (webpack)-dev-server-without-h2/client?https://centos7-luna-devel.localhost.example.com webpack/hot/dev-server ./webpack/assets/javascripts/bundle.js 52 bytes {7} [built]
+ [2812] multi (webpack)-dev-server-without-h2/client?https://centos7-luna-devel.localhost.example.com webpack/hot/dev-server react-intl intl 64 bytes {15} [built]
+ [2813] multi (webpack)-dev-server-without-h2/client?https://centos7-luna-devel.localhost.example.com webpack/hot/dev-server .-tasks/webpack/index.js 52 bytes {5} [built]
+ [2887] multi (webpack)-dev-server-without-h2/client?https://centos7-luna-devel.localhost.example.com webpack/hot/dev-server ._remote_execution/webpack/fills_index.js 52 bytes {12} [built]
+ [2890] multi (webpack)-dev-server-without-h2/client?https://centos7-luna-devel.localhost.example.com webpack/hot/dev-server ._remote_execution/webpack/global_index.js 52 bytes {2} [built]
+ [4634] multi (webpack)-dev-server-without-h2/client?https://centos7-luna-devel.localhost.example.com webpack/hot/dev-server ._remote_execution/webpack/index.js 52 bytes {8} [built]
+ [4647] multi (webpack)-dev-server-without-h2/client?https://centos7-luna-devel.localhost.example.com webpack/hot/dev-server ._ansible/webpack/index.js 52 bytes {4} [built]
+ [4748] multi (webpack)-dev-server-without-h2/client?https://centos7-luna-devel.localhost.example.com webpack/hot/dev-server ._discovery/webpack/index.js 52 bytes {10} [built]
+ [4757] multi (webpack)-dev-server-without-h2/client?https://centos7-luna-devel.localhost.example.com webpack/hot/dev-server ../katello/webpack/common_index.js 52 bytes {13} [built]
+ [4761] multi (webpack)-dev-server-without-h2/client?https://centos7-luna-devel.localhost.example.com webpack/hot/dev-server ../katello/webpack/fills_index.js 52 bytes {9} [built]
+ [4764] multi (webpack)-dev-server-without-h2/client?https://centos7-luna-devel.localhost.example.com webpack/hot/dev-server ../katello/webpack/index.js 52 bytes {3} [built]
+ [5071] multi (webpack)-dev-server-without-h2/client?https://centos7-luna-devel.localhost.example.com webpack/hot/dev-server ._rh_cloud/webpack/index.js 52 bytes {1} [built]
+ [5073] multi (webpack)-dev-server-without-h2/client?https://centos7-luna-devel.localhost.example.com webpack/hot/dev-server ._rh_cloud/webpack/global_index.js 52 bytes {0} [built]
+ [5080] multi (webpack)-dev-server-without-h2/client?https://centos7-luna-devel.localhost.example.com webpack/hot/dev-server ._templates/webpack/index.js 52 bytes {6} [built]
+ [5122] multi (webpack)-dev-server-without-h2/client?https://centos7-luna-devel.localhost.example.com webpack/hot/dev-server ._webhooks/webpack/index.js 52 bytes {14} [built]
