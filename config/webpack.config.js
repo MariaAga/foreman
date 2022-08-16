@@ -14,7 +14,7 @@ var vendorEntry = require('./webpack.vendor');
 var SimpleNamedModulesPlugin = require('../webpack/simple_named_modules');
 var argvParse = require('argv-parse');
 var fs = require('fs');
-var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 var args = argvParse({
   port: {
@@ -165,7 +165,6 @@ module.exports = env => {
           test: /\.(sa|sc|c)ss$/,
           use: [
             devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-            MiniCssExtractPlugin.loader,
             production
               ? 'css-loader!sass-loader'
               : 'css-loader?sourceMap!sass-loader?sourceMap',
@@ -205,20 +204,21 @@ module.exports = env => {
           );
         },
       }),
-      new OptimizeCssAssetsPlugin({
-        assetNameRegExp: /\.css$/g,
-        cssProcessor: require('cssnano'),
-        cssProcessorPluginOptions: {
-          preset: [
-            'default',
-            {
-              discardComments: { removeAll: true },
-              discardDuplicates: { removeAll: true },
-            },
-          ],
-        },
-        canPrint: true,
-      }),
+      
+      // new OptimizeCssAssetsPlugin({ // TODO change to CssMinimizerPlugin
+      //   assetNameRegExp: /\.css$/g,
+      //   cssProcessor: require('cssnano'),
+      //   cssProcessorPluginOptions: {
+      //     preset: [
+      //       'default',
+      //       {
+      //         discardComments: { removeAll: true },
+      //         discardDuplicates: { removeAll: true },
+      //       },
+      //     ],
+      //   },
+      //   canPrint: true,
+      // }),
       new webpack.DefinePlugin({
         'process.env': {
           NODE_ENV: JSON.stringify(mode),
