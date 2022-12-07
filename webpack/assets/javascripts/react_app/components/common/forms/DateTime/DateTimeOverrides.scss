@@ -1,4 +1,4 @@
-@import "~@theforeman/vendor/scss/variables";
+@use "~@theforeman/vendor/scss/variables" as *;
 
 $screen-md:                  992px !default;
 $screen-md-min:              $screen-md !default;

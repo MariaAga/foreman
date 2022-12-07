@@ -1,4 +1,4 @@
-@import '../../../../../../common/colors';
+@use '../../../../../../common/colors' as *;
 
 .disks-container {
   padding: 0 150px;

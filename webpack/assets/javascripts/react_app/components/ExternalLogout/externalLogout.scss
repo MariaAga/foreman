@@ -1,4 +1,4 @@
-@import '../LoginPage/LoginPage.scss';
+@use '../LoginPage/LoginPage' as *;
 
 .external-logout {
   height: 100%;

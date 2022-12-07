@@ -1,4 +1,4 @@
-@import "~@theforeman/vendor/scss/variables";
+@use "~@theforeman/vendor/scss/variables" as *;
 
 @keyframes blink {
   0% {
@@ -23,10 +23,10 @@
 
 .navbar-pf-vertical {
   .nav-item-iconic .blink-image {
-    color: $color-pf-gold-200;
+    color: --pf-global--palette--gold-200;
   }
 
   .nav-item-iconic:hover .blink-image {
-    color: $color-pf-gold-200;
+    color: --pf-global--palette--gold-200;
   }
 }

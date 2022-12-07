@@ -1,5 +1,5 @@
-@import "~@theforeman/vendor/scss/variables";
-@import "~@theforeman/vendor/scss/mixins";
+@use "~@theforeman/vendor/scss/variables" as *;
+@use "~@theforeman/vendor/scss/mixins" as *;
 
 .foreman-numeric-input {
   position: relative;
@@ -13,12 +13,12 @@
       flex: 1;
       height: 26px;
       width: 100%;
-      padding-right: $padding-small-vertical;
+      padding-right: patternfly3-padding-small-vertical;
       box-sizing: border-box;
       font-size: inherit;
-      border: 1px solid $input-border;
-      border-radius: $input-border-radius;
-      padding-left: $padding-small-vertical;
+      border: 1px solid patternfly3-input-border;
+      border-radius: patternfly3-input-border-radius;
+      padding-left: patternfly3-padding-small-vertical;
       display: block;
       appearance: none;
       line-height: normal;
@@ -28,12 +28,12 @@
       }
 
       &:hover {
-        border-color: $input-border-hover;
+        border-color: patternfly3-input-border-hover;
       }
 
       &[disabled] {
         box-shadow: none;
-        border-color: $input-border;
+        border-color: patternfly3-input-border;
         color: #8b8d8f;
         cursor: not-allowed;
       }
@@ -51,12 +51,12 @@
 
   .foreman-numeric-input-handler-up-inner {
     border-width: 0 0.6ex 0.6ex 0.6ex;
-    border-color: transparent transparent $color-pf-black-600;
+    border-color: transparent transparent patternfly3-color-pf-black-600;
   }
 
   .foreman-numeric-input-handler-down-inner {
     border-width: 0.6ex 0.6ex 0 0.6ex;
-    border-color: $color-pf-black-600 transparent transparent;
+    border-color: patternfly3-color-pf-black-600 transparent transparent;
   }
 
   .foreman-numeric-input-handler-up {
@@ -78,21 +78,21 @@
     position: absolute;
     right: 2px;
     width: 2.26ex;
-    border-color: $color-pf-black-300;
+    border-color: patternfly3-color-pf-black-300;
     border-style: solid;
     text-align: center;
     cursor: default;
     transition: all 0.1s ease 0s;
-    background: $color-pf-black-300;
-    box-shadow: $color-pf-black-300 -1px -1px 3px inset, $color-pf-black-200 1px 1px 3px inset;
+    background: patternfly3-color-pf-black-300;
+    box-shadow: patternfly3-color-pf-black-300 -1px -1px 3px inset, patternfly3-color-pf-black-200 1px 1px 3px inset;
 
     &:hover {
-      background: $color-pf-black-400;
+      background: patternfly3-color-pf-black-400;
     }
 
     &:active {
-      background: $color-pf-black-500;
-      box-shadow: 0 1px 3px $color-pf-black-300 inset, -1px -1px 4px $color-pf-black-200 inset;
+      background: patternfly3-color-pf-black-500;
+      box-shadow: 0 1px 3px patternfly3-color-pf-black-300 inset, -1px -1px 4px patternfly3-color-pf-black-200 inset;
     }
 
     &:disabled {

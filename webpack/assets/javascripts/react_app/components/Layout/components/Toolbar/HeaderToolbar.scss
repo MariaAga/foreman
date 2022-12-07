@@ -1,4 +1,4 @@
-@import '../../../../common/variables.scss';
+@use '../../../../common/variables.scss' as *;
 
 #data-toolbar {
   grid-column: 2 / 3;

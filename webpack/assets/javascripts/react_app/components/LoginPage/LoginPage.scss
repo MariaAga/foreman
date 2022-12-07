@@ -1,4 +1,4 @@
-@import '~@theforeman/vendor/scss/variables';
+@use '~@theforeman/vendor/scss/variables';
 
 $caption_font_weight: 600;
 $background_image: url('../LoginPage/background.svg');
@@ -25,7 +25,7 @@ $background_image: url('../LoginPage/background.svg');
     }
 
     .login-pf-caption {
-      color: $color-pf-white;
+      color: patternfly3-color-pf-white;
 
       h1 {
         font-weight: $caption_font_weight;

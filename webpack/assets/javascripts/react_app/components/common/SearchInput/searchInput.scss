@@ -1,5 +1,4 @@
-@import '../../../common/colors';
-
+@use '../../../common/colors' as *;
 .input-search {
   position: relative;
   left: 20px;

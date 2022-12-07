@@ -1,6 +1,6 @@
-@import '~@theforeman/vendor/scss/variables';
-@import '../../common/colors.scss';
-@import '../../common/variables.scss';
+@use '~@theforeman/vendor/scss/variables';
+@use '../../common/colors.scss' as *;
+@use '../../common/variables.scss' as *;
 
 .secondary-nav-item-pf > .nav-pf-secondary-nav {
   background-color: $nav-pf-vertical-active-bg-color;
@@ -98,7 +98,7 @@
   patternfly-sass hides the vertical-nav on smaller screens, see: https://github.com/patternfly/patternfly-sass/blob/5e7cce3445d5b1af1e16500695b9f33edc6a4f6c/assets/javascripts/patternfly-functions.js#L260
   the react-container needs to be shifted when it happens.
 */
-@media only screen and (max-width: $pf-global--breakpoint--md) {
+@media only screen and (max-width: --pf-global--breakpoint--md) {
   #react-app-root .react-container,
   #rails-app-content {
     margin-left: 0;
@@ -137,7 +137,7 @@
     margin-left: 75px;
   }
 
-  @media only screen and (max-width: $pf-global--breakpoint--md) {
+  @media only screen and (max-width: --pf-global--breakpoint--md) {
     #react-app-root .react-container,
     #rails-app-content {
       margin-left: 0;

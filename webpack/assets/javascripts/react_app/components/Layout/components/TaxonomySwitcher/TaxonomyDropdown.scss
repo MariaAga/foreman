@@ -1,4 +1,4 @@
-@import '~@theforeman/vendor/scss/variables';
+@use '~@theforeman/vendor/scss/variables';
 
 .pf-c-page__header-tools-group {
   .pf-c-context-selector__menu-search {
@@ -14,6 +14,6 @@
   }
   .pf-c-context-selector__menu-footer > a{
     // to override secondry button text color being white if the button is in a menu
-    color: $pf-color-blue-400
+    color: patternfly3-pf-color-blue-400
   }
 }

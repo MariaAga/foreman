@@ -1,4 +1,4 @@
-@import '../../../../common/colors';
+@use '../../../../common/colors' as *;
 
 .vmware-storage-container {
   display: flex;

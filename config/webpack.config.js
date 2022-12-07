@@ -164,12 +164,10 @@ module.exports = env => {
         {
           test: /\.(sa|sc|c)ss$/,
           use: [
-            devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-            production
-              ? 'css-loader!sass-loader'
-              : 'css-loader?sourceMap!sass-loader?sourceMap',
-            'postcss-loader',
-            'sass-loader'
+            devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+            "css-loader",
+            "postcss-loader",
+            "sass-loader",
           ],
         },
         {
@@ -248,14 +246,13 @@ module.exports = env => {
         sourceMap: true,
       }),
       new SimpleNamedModulesPlugin(),
-      new webpack.optimize.OccurrenceOrderPlugin(),
       new CompressionPlugin()
     );
     config.devtool = 'source-map';
   } else {
-    config.plugins.push(
-      new webpack.HotModuleReplacementPlugin() // Enable HMR
-    );
+    // config.plugins.push(
+    //   new webpack.HotModuleReplacementPlugin() // Enable HMR
+    // );
 
     config.devServer = {
       host: devServer.host,
