@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Modal, Button } from 'patternfly-react';
+import { ModalBoxFooter, Button } from '@patternfly/react-core';
 import { useModalContext } from '../ForemanModalHooks';
 import { translate as __ } from '../../../common/I18n';
 
@@ -12,9 +12,7 @@ const ForemanModalFooter = props => {
 
   // Render the provided children, or default markup if none given
   const closeButton = childCount === 0 && (
-    <Button bsStyle="default" onClick={onClose}>
-      {__('Close')}
-    </Button>
+    <Button onClick={onClose}>{__('Close')}</Button>
   );
 
   const submitOrCancel = childCount === 0 && submitProps && (
@@ -27,10 +25,10 @@ const ForemanModalFooter = props => {
   );
 
   return (
-    <Modal.Footer {...props}>
+    <ModalBoxFooter {...props}>
       {props.children}
       {submitOrCancel || closeButton}
-    </Modal.Footer>
+    </ModalBoxFooter>
   );
 };
 

@@ -1,11 +1,11 @@
 import React from 'react';
-import { Button } from 'patternfly-react';
+import { Button } from '@patternfly/react-core';
 import PropTypes from 'prop-types';
 
 import { translate as __ } from '../../../../common/I18n';
 
 const CancelBtn = ({ onCancel, disabled, bsStyle, btnText }) => (
-  <Button bsStyle={bsStyle} onClick={onCancel} disabled={disabled}>
+  <Button variant={bsStyle} onClick={onCancel} disabled={disabled}>
     {btnText}
   </Button>
 );
@@ -19,7 +19,7 @@ CancelBtn.propTypes = {
 
 CancelBtn.defaultProps = {
   disabled: false,
-  bsStyle: 'default',
+  bsStyle: 'secondary',
   btnText: __('Cancel'),
 };
 

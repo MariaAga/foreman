@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal } from 'patternfly-react';
+import { Modal } from '@patternfly/react-core';
 import PropTypes from 'prop-types';
 import ModalContext from './ForemanModalContext';
 import ForemanModalHeader from './subcomponents/ForemanModalHeader';
@@ -17,6 +17,7 @@ const ForemanModal = props => {
     submitProps,
     ...propsToPassDown
   } = props;
+
   // Extract header and footer from children, if provided
   const { headerChild, footerChild, otherChildren } = extractModalNodes(
     children
@@ -41,14 +42,15 @@ const ForemanModal = props => {
   return (
     <ModalContext.Provider value={context}>
       <Modal
-        onHide={onClose}
-        show={isOpen}
         className="foreman-modal"
+        header={headerToRender}
+        footer={footerToRender}
+        variant="medium"
         {...propsToPassDown}
+        isOpen={isOpen}
+        onClose={onClose}
       >
-        {headerToRender}
-        <Modal.Body>{otherChildren}</Modal.Body>
-        {footerToRender}
+        {otherChildren}
       </Modal>
     </ModalContext.Provider>
   );
