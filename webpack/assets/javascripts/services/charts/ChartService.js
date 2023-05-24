@@ -9,12 +9,12 @@ import {
   smallBarChartConfig,
   lineChartConfig,
   timeseriesLineChartConfig,
-  timeseriesAreaChartConfig,
+  chartConfig,
 } from './ChartService.consts';
 
 const chartsSizeConfig = {
   area: {
-    timeseries: timeseriesAreaChartConfig,
+    timeseries: chartConfig,
   },
   bar: {
     regular: barChartConfig,
@@ -43,14 +43,6 @@ const doDataExist = data => {
   }, false);
 };
 
-const getColors = data =>
-  data.reduce((curr, next) => {
-    const key = next[0];
-    const color = next[2];
-
-    return color ? { ...curr, [key]: color } : curr;
-  }, {});
-
 export const getChartConfig = ({
   type,
   data,
@@ -59,8 +51,7 @@ export const getChartConfig = ({
   id = uuidV1(),
 }) => {
   const chartConfigForType = chartsSizeConfig[type][config];
-  const colors = getColors(data);
-  const colorsSize = Object.keys(colors).length;
+  const colorScale = data.map(item => item[2]);
   const dataExists = doDataExist(data);
   const longNames = {};
 
@@ -82,7 +73,7 @@ export const getChartConfig = ({
     data: {
       columns: dataExists ? dataWithShortNames : [],
       onclick,
-      ...(colorsSize > 0 ? { colors } : {}),
+      ...(colorScale.length > 0 ? { colorScale } : {}),
     },
     // eslint-disable-next-line no-shadow
     tooltip: { format: { name: (name, ratio, id, idx) => longNames[id] } },

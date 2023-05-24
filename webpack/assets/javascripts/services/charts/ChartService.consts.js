@@ -31,73 +31,47 @@ const lineChartEnums = {
 };
 
 export const chartConfig = {
-  data: {
-    columns: [],
-  },
-  color: {
+  colorScale: {
     pattern: ['#0088ce', '#ec7a08', '#3f9c35', '#005c66', '#f9d67a', '#703fec'],
   },
-  tooltip: {
-    show: true,
-  },
-  legend: { show: false },
-  padding: {
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-  },
-  size: enums.SIZE.REGULAR,
+  ...enums.SIZE.REGULAR,
 };
 
 export const donutChartConfig = {
   ...chartConfig,
-  donut: {
     width: enums.WIDTH.SMALL,
-    label: { show: false },
-  },
 };
 
 export const donutMediumChartConfig = {
   ...donutChartConfig,
-  size: enums.SIZE.MEDIUM,
-  legend: { show: false },
-  donut: {
-    ...donutChartConfig.donut,
-    width: enums.WIDTH.MEDIUM,
-  },
+  ...enums.SIZE.MEDIUM,
 };
 
 export const donutLargeChartConfig = {
   ...donutChartConfig,
-  size: enums.SIZE.LARGE,
-  legend: { show: true, position: 'bottom' },
-  donut: {
-    ...donutChartConfig.donut,
-    width: enums.WIDTH.LARGE,
-  },
+  ...enums.SIZE.LARGE,
 };
 
 export const barChartConfig = {
   ...chartConfig,
-  size: barChartEnums.SIZE.REGULAR,
+  ...barChartEnums.SIZE.REGULAR,
   padding: null,
 };
 
 export const mediumBarChartConfig = {
   ...barChartConfig,
-  size: barChartEnums.SIZE.MEDIUM,
+  ...barChartEnums.SIZE.MEDIUM,
 };
 
 export const smallBarChartConfig = {
   ...barChartConfig,
-  size: barChartEnums.SIZE.SMALL,
+  ...barChartEnums.SIZE.SMALL,
 };
 
 export const lineChartConfig = {
   ...chartConfig,
   legend: { show: true },
-  size: lineChartEnums.SIZE.REGULAR,
+  ...lineChartEnums.SIZE.REGULAR,
   padding: null,
 };
 
@@ -116,37 +90,6 @@ export const timeseriesLineChartConfig = {
     top: 10,
     bottom: 70,
     left: 30,
-    right: 20,
-  },
-};
-
-export const areaChartConfig = {
-  ...chartConfig,
-  legend: { show: true },
-};
-
-export const timeseriesAreaChartConfig = {
-  ...areaChartConfig,
-  axis: {
-    x: {
-      type: 'timeseries',
-      tick: {
-        format: date =>
-          new Intl.DateTimeFormat(intl.locale, {
-            month: 'numeric',
-            day: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric',
-          }).format(date),
-        rotate: -40,
-      },
-    },
-  },
-  size: undefined,
-  padding: {
-    top: 10,
-    bottom: 60,
-    left: 60,
     right: 20,
   },
 };

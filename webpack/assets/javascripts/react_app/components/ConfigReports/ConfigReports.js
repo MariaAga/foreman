@@ -23,7 +23,6 @@ const ConfigReports = props => {
   );
 
   const chartBoxProps = {
-    className: 'report-chart',
     noDataMsg: __('No data available'),
     status: STATUS.RESOLVED,
     config: 'medium',
@@ -31,7 +30,7 @@ const ConfigReports = props => {
 
   return (
     <Row>
-      <Col md={5}>
+      <Col md={6} lg={4}>
         <ChartBox
           {...chartBoxProps}
           type="donut"
@@ -39,17 +38,8 @@ const ConfigReports = props => {
           title={__('Report Metrics')}
         />
       </Col>
-
-      <Col md={5} className="bar-chart-medium-width">
-        <ChartBox
-          {...chartBoxProps}
-          type="bar"
-          chart={{ data: statusChartData, id: 'report-status' }}
-          title={__('Report Status')}
-        />
-      </Col>
-      <Col md={2}>
-        <table className={classNames(tableClasses, 'report-chart')}>
+      <Col md={4} lg={2}>
+        <table className={classNames(tableClasses)}>
           <tbody>{tableData.map((metric, i) => createRow(metric, i))}</tbody>
           <tfoot>
             <tr>
@@ -58,6 +48,14 @@ const ConfigReports = props => {
             </tr>
           </tfoot>
         </table>
+      </Col>
+      <Col md={12} lg={8}>
+        <ChartBox
+          {...chartBoxProps}
+          type="bar"
+          chart={{ data: statusChartData, id: 'report-status' }}
+          title={__('Report Status')}
+        />
       </Col>
     </Row>
   );

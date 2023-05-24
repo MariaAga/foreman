@@ -33,7 +33,7 @@ const Loader = ({ status, children, spinnerSize }) => {
       break;
   }
 
-  return <div className="loader-root">{content}</div>;
+  return <div >{content}</div>;
 };
 
 Loader.propTypes = {
