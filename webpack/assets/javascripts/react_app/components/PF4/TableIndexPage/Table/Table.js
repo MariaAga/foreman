@@ -26,6 +26,7 @@ export const Table = ({
   results,
   setParams,
   url,
+  selectOptions,
 }) => {
   const columnsToSortParams = {};
   Object.keys(columns).forEach(key => {
@@ -79,6 +80,19 @@ export const Table = ({
       <TableComposable variant="compact">
         <Thead>
           <Tr>
+            {selectOptions && (
+              <Th
+                key={-1}
+                select={
+                  selectOptions
+                    ? {
+                        onSelect: selectOptions.onSelectAll,
+                        isSelected: selectOptions.isAllSelected,
+                      }
+                    : undefined
+                }
+              />
+            )}
             {columnNamesKeys.map(k => (
               <Th
                 key={k}
@@ -109,6 +123,16 @@ export const Table = ({
           )}
           {results.map((result, rowIndex) => (
             <Tr key={rowIndex}>
+              {selectOptions && (
+                <Td
+                  select={{
+                    rowIndex,
+                    onSelect: (_event, isSelecting) =>
+                      selectOptions.onSelect(rowIndex, isSelecting),
+                    isSelected: selectOptions.isSelected(rowIndex),
+                  }}
+                />
+              )}
               {columnNamesKeys.map(k => (
                 <Td key={k} dataLabel={columnNames[k]}>
                   {columns[k].wrapper ? columns[k].wrapper(result) : result[k]}
@@ -148,6 +172,7 @@ Table.propTypes = {
   results: PropTypes.array,
   setParams: PropTypes.func.isRequired,
   url: PropTypes.string.isRequired,
+  selectOptions: PropTypes.object,
 };
 
 Table.defaultProps = {
@@ -156,4 +181,5 @@ Table.defaultProps = {
   itemCount: 0,
   getActions: null,
   results: [],
+  selectOptions: null,
 };

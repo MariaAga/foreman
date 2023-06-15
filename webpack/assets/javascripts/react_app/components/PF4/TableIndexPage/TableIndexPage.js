@@ -79,6 +79,7 @@ const TableIndexPage = ({
   isDeleteable,
   searchable,
   children,
+  ...props
 }) => {
   const history = useHistory();
   const { location: { search: historySearch } = {} } = history || {};
@@ -236,6 +237,7 @@ const TableIndexPage = ({
             errorMessage={
               status === STATUS.ERROR && errorMessage ? errorMessage : null
             }
+            {...props}
           />
         )}
       </PageSection>

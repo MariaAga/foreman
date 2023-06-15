@@ -5,6 +5,23 @@ import TableIndexPage from '../../../components/PF4/TableIndexPage/TableIndexPag
 import { MODELS_API_PATH, API_REQUEST_KEY } from '../constants';
 
 const ModelsPage = () => {
+  const [selectedRows, setSelectedRows] = React.useState([]);
+  const [isAllSelected, setIsAllSelected] = React.useState(false);
+  const selectOptions = {
+    onSelectAll: (_e, isSelecting) => {
+      setIsAllSelected(isSelecting);
+    },
+    isAllSelected,
+    onSelect: (rowIndex, isSelecting) => {
+      setSelectedRows(_selectedRows => {
+        if (isSelecting) {
+          return [..._selectedRows, rowIndex];
+        }
+        return _selectedRows.filter(i => i !== rowIndex);
+      });
+    },
+    isSelected: rowIndex => isAllSelected || selectedRows.includes(rowIndex),
+  };
   const columns = {
     name: {
       title: __('Name'),
@@ -34,6 +51,7 @@ const ModelsPage = () => {
       controller="models"
       isDeleteable
       columns={columns}
+      selectOptions={selectOptions}
     />
   );
 };
