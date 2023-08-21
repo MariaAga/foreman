@@ -3,27 +3,34 @@
 
 var path = require('path');
 var webpack = require('webpack');
+const glob = require('glob');
+
 var ForemanVendorPlugin = require('@theforeman/vendor')
   .WebpackForemanVendorPlugin;
-var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-var StatsWriterPlugin = require('webpack-stats-plugin').StatsWriterPlugin;
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var CompressionPlugin = require('compression-webpack-plugin');
-var pluginUtils = require('../script/plugin_webpack_directories');
-var vendorEntry = require('./webpack.vendor');
-var SimpleNamedModulesPlugin = require('../webpack/simple_named_modules');
-var argvParse = require('argv-parse');
-var fs = require('fs');
-var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+// var { ForemanVendorPlugin } = require('./vendor-webpack-plugin');
 
-var args = argvParse({
-  port: {
-    type: 'string',
-  },
-  host: {
-    type: 'string',
-  },
-});
+var StatsWriterPlugin = require('webpack-stats-plugin').StatsWriterPlugin;
+var MiniCssExtractPlugin = require('mini-css-extract-plugin');
+var vendorEntry = require('./webpack.vendor');
+var fs = require('fs');
+const { ModuleFederationPlugin } = require('webpack').container;
+var pluginUtils = require('../script/plugin_webpack_directories');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin;
+
+class AddRuntimeRequirement {
+  apply(compiler) {
+    compiler.hooks.compilation.tap('AddRuntimeRequirement', compilation => {
+      const { RuntimeGlobals } = compiler.webpack;
+      compilation.hooks.additionalModuleRuntimeRequirements.tap(
+        'AddRuntimeRequirement',
+        (module, set) => {
+          set.add(RuntimeGlobals.loadScript);
+        }
+      );
+    });
+  }
+}
 
 const supportedLocales = () => {
   const localeDir = path.join(__dirname, '..', 'locale');
@@ -42,111 +49,53 @@ const supportedLanguages = () => {
   return [...new Set(supportedLocales().map(d => d.split('_')[0]))];
 };
 
-const devServerConfig = () => {
-  const result = require('dotenv').config();
-  if (result.error && result.error.code !== 'ENOENT') {
-    throw result.error;
-  }
+const supportedLanguagesRE = new RegExp(
+  `/(${supportedLanguages().join('|')})$`
+);
 
-  return {
-    port: args.port || '3808',
-    host: args.host || process.env.BIND || 'localhost',
-  };
-};
-
-module.exports = env => {
-  const devServer = devServerConfig();
-
-  // set TARGETNODE_ENV=production on the environment to add asset fingerprints
+var bundleEntry = path.join(
+  __dirname,
+  '..',
+  'webpack/assets/javascripts/bundle.js'
+);
+const foremanCoreRemote = 'foremanReact';
+const commonConfig = function(env, argv) {
   var production =
     process.env.RAILS_ENV === 'production' ||
     process.env.NODE_ENV === 'production';
-
-  var bundleEntry = path.join(
-    __dirname,
-    '..',
-    'webpack/assets/javascripts/bundle.js'
-  );
-
-  var plugins = pluginUtils.getPluginDirs('pipe');
-
-  var resolveModules = [
-    path.join(__dirname, '..', 'webpack'),
-    path.join(__dirname, '..', 'node_modules'),
-    'node_modules/',
-  ].concat(pluginUtils.pluginNodeModules(plugins));
-
-  if (env && env.pluginName !== undefined) {
-    var pluginEntries = {};
-    pluginEntries[env.pluginName] = plugins['entries'][env.pluginName];
-    for (var entry of Object.keys(plugins['entries'])) {
-      if (entry.startsWith(env.pluginName + ':')) {
-        pluginEntries[entry] = plugins['entries'][entry];
-      }
-    }
-
-    var outputPath = path.join(
-      plugins['plugins'][env.pluginName]['root'],
-      'public',
-      'webpack'
-    );
-    var jsFilename = production
-      ? env.pluginName + '/[name]-[chunkhash].js'
-      : env.pluginName + '/[name].js';
-    var cssFilename = production
-      ? env.pluginName + '/[name]-[chunkhash].css'
-      : env.pluginName + '/[name].css';
-    var chunkFilename = production
-      ? env.pluginName + '/[name]-[chunkhash].js'
-      : env.pluginName + '/[name].js';
-    var manifestFilename = env.pluginName + '/manifest.json';
-  } else {
-    var pluginEntries = plugins['entries'];
-    var outputPath = path.join(__dirname, '..', 'public', 'webpack');
-    var jsFilename = production ? '[name]-[chunkhash].js' : '[name].js';
-    var cssFilename = production ? '[name]-[chunkhash].css' : '[name].css';
-    var chunkFilename = production ? '[name]-[chunkhash].js' : '[name].js';
-    var manifestFilename = 'manifest.json';
-  }
-
-  var entry = Object.assign(
-    {
-      bundle: bundleEntry,
-      vendor: vendorEntry,
+  const mode = production ? 'production' : 'development';
+  return {
+    mode,
+    optimization: {
+      splitChunks: false,
     },
-    pluginEntries
-  );
-
-  const supportedLanguagesRE = new RegExp(
-    `/(${supportedLanguages().join('|')})$`
-  );
-
-  var config = {
-    entry: entry,
-    output: {
-      // Build assets directly in to public/webpack/, let webpack know
-      // that all webpacked assets start with webpack/
-
-      // must match config.webpack.output_dir
-      path: outputPath,
-      publicPath: '/webpack/',
-      filename: jsFilename,
-      chunkFilename,
-    },
-
+    devtool: 'eval-source-map',
     resolve: {
-      modules: resolveModules,
-      alias: Object.assign(
-        {
-          foremanReact: path.join(
-            __dirname,
-            '../webpack/assets/javascripts/react_app'
-          ),
-        },
-        pluginUtils.aliasPlugins(pluginEntries)
-      ),
+      fallback: {
+        path: require.resolve('path-browserify'),
+        os: require.resolve('os-browserify'),
+        // stream: require.resolve('stream-browserify'),
+        // buffer: require.resolve('buffer'),
+      },
+      alias: {
+        foremanReact: path.join(
+          __dirname,
+          '../webpack/assets/javascripts/react_app'
+        ),
+        // '@theforeman/vendor': path.join(
+        //   __dirname,
+        //   '..',
+        //   '..',
+        //   'foreman',
+        //   'node_modules',
+        //   '@theforeman',
+        //   'vendor'
+        // ),
+      },
     },
-
+    resolveLoader: {
+      modules: [path.resolve(__dirname, '..', 'node_modules')],
+    },
     module: {
       rules: [
         {
@@ -160,24 +109,13 @@ module.exports = env => {
           },
         },
         {
-          test: /\.css$/,
-          use: ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: 'css-loader',
-          }),
-        },
-        {
           test: /\.(png|gif|svg)$/,
-          use: 'url-loader?limit=32767',
-        },
-        {
-          test: /\.scss$/,
-          use: ExtractTextPlugin.extract({
-            fallback: 'style-loader', // The backup style loader
-            use: production
-              ? 'css-loader!sass-loader'
-              : 'css-loader?sourceMap!sass-loader?sourceMap',
-          }),
+          type: 'asset',
+          parser: {
+            dataUrlCondition: {
+              maxSize: 32767,
+            },
+          },
         },
         {
           test: /\.(graphql|gql)$/,
@@ -186,48 +124,19 @@ module.exports = env => {
         },
       ],
     },
-
     plugins: [
+      // new webpack.ProvidePlugin({
+      //   Buffer: ['buffer', 'Buffer'],
+      // }),
+      // new webpack.ProvidePlugin({
+      //   process: 'process/browser',
+      // }),
       new ForemanVendorPlugin({
-        mode: production ? 'production' : 'development',
-      }),
-      // must match config.webpack.manifest_filename
-      new StatsWriterPlugin({
-        filename: manifestFilename,
-        fields: null,
-        transform: function(data, opts) {
-          return JSON.stringify(
-            {
-              assetsByChunkName: data.assetsByChunkName,
-              errors: data.errors,
-              warnings: data.warnings,
-            },
-            null,
-            2
-          );
-        },
-      }),
-      new ExtractTextPlugin({
-        filename: cssFilename,
-        allChunks: true,
-      }),
-      new OptimizeCssAssetsPlugin({
-        assetNameRegExp: /\.css$/g,
-        cssProcessor: require('cssnano'),
-        cssProcessorPluginOptions: {
-          preset: [
-            'default',
-            {
-              discardComments: { removeAll: true },
-              discardDuplicates: { removeAll: true },
-            },
-          ],
-        },
-        canPrint: true,
+        mode,
       }),
       new webpack.DefinePlugin({
         'process.env': {
-          NODE_ENV: JSON.stringify(production ? 'production' : 'development'),
+          NODE_ENV: JSON.stringify(mode),
           NOTIFICATIONS_POLLING: process.env.NOTIFICATIONS_POLLING,
           REDUX_LOGGER: process.env.REDUX_LOGGER,
         },
@@ -242,46 +151,353 @@ module.exports = env => {
         /react-intl\/locale-data/,
         supportedLanguagesRE
       ),
+      new AddRuntimeRequirement(),
+      // new webpack.optimize.ModuleConcatenationPlugin(),
     ],
+    infrastructureLogging: {
+      colors: true,
+      level: 'verbose',
+    },
+    stats: {
+      logging: 'verbose',
+      preset: 'verbose',
+    },
   };
+};
 
-  config.plugins.push(
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: Infinity,
+const moduleFederationSharedConfig = function(env, argv) {
+  
+  return {
+    react: { singleton: true },
+    'react-dom': { singleton: true },
+    // '@theforeman/vendor': { singleton: true },
+    // '@babel/core': { singleton: true },
+    // webpack: { singleton: true },
+    // foremanReact: { singleton: true },
+    // [path.join(__dirname, '../webpack/assets/javascripts/react_app')]: {
+    //   singleton: true,
+    // },
+    // TheForemanDevDeps: {
+    //   // import: 'TheForemanDevDeps',
+    //   singleton: true,
+    // },
+    // "../../foreman/webpack/assets/javascripts/foreman_navigation.js": {singleton: true},
+    // "../../foreman/webpack/assets/javascripts/foreman_tools.js": {singleton: true},
+    // '../../foreman/webpack/assets/javascripts/react_app/components/HostDetails/Templates/CardItem/CardTemplate/index.js': {
+    // singleton: true,
+    // import:
+    // '../../foreman/webpack/assets/javascripts/react_app/components/HostDetails/Templates/CardItem/CardTemplate/index.js',
+    // },
+
+    // [path.join(__dirname, '../webpack/assets/javascripts/react_app/foreman_navigation.js')]: {
+    // singleton: true,
+    // },
+    // foreman: {import: 'TheForemanDevDeps', singleton: true },
+    // 'bundle.js': { singleton: true },
+    // 'path-browserify': { singleton: true },
+    // 'os-browserify': { singleton: true },
+  };
+};
+
+const coreConfig = function(env, argv) {
+  var config = commonConfig(env, argv);
+
+  var manifestFilename = 'manifest.json';
+  config.context = path.resolve(__dirname, '..');
+  config.entry = {
+    bundle: { import: bundleEntry, dependOn: 'vendor' },
+    vendor: vendorEntry,
+  };
+  config.output = {
+    path: path.join(__dirname, '..', 'public', 'webpack'),
+    publicPath: '/webpack/',
+    // filename: '[name].js',
+    // chunkFilename: '[name].js',
+  };
+  var plugins = config.plugins;
+  console.log(
+    'path core',
+    path.resolve(
+      __dirname,
+      '..',
+      'webpack',
+      'assets',
+      'javascripts',
+      'react_app',
+      'components'
+    )
+  );
+  plugins.push(
+    new ModuleFederationPlugin(
+      {
+        name: foremanCoreRemote,
+
+        shared: {
+          ...moduleFederationSharedConfig(env, argv),
+
+          './webpack/assets/javascripts/react_app/components/HostDetails/Templates/CardItem/CardTemplate/index.js': {
+            singleton: true,
+            eager: true,
+            shareKey: 'CardTemplate',
+          },
+        },
+      }
+      // filename: 'remoteEntry.js',
+      // exposes: {
+      //   // './routes/RoutingService': path.resolve(
+      //   //   __dirname,
+      //   //   '..',
+      //   //   'webpack',
+      //   //   'assets',
+      //   //   'javascripts',
+      //   //   'react_app',
+      //   //   'routes',
+      //   //   'RoutingService.js'
+      //   // ),
+      //   './routes/RoutingService': './webpack/assets/javascripts/react_app/routes/RoutingService.js',
+      //   './': path.resolve(
+      //     __dirname,
+      //     '..',
+      //     'webpack',
+      //     'assets',
+      //     'javascripts',
+      //     'react_app'
+      //   ),
+      // },
+      // })
+    )
+  );
+  plugins.push(
+    new MiniCssExtractPlugin({
+      ignoreOrder: true,
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+    })
+  );
+  plugins.push(
+    new StatsWriterPlugin({
+      filename: manifestFilename,
+      fields: null,
+      transform: function(data, opts) {
+        return JSON.stringify(
+          {
+            assetsByChunkName: data.assetsByChunkName,
+            errors: data.errors,
+            warnings: data.warnings,
+          },
+          null,
+          2
+        );
+      },
     })
   );
 
-  if (production) {
-    config.plugins.push(
-      new webpack.NoEmitOnErrorsPlugin(),
-      new UglifyJsPlugin({
-        uglifyOptions: {
-          compress: { warnings: false },
+  plugins.push(
+    new BundleAnalyzerPlugin({
+      generateStatsFile: true,
+      analyzerMode: 'static',
+      openAnalyzer: false,
+      statsFilename: 'stats.json',
+    })
+  );
+  config.plugins = plugins;
+  var rules = config.module.rules;
+  rules.push({
+    test: /\.(sa|sc|c)ss$/,
+    use: [
+      {
+        loader: MiniCssExtractPlugin.loader,
+        options: {
+          publicPath: path.join(__dirname, '..', 'public', 'webpack'),
         },
-        sourceMap: true,
-      }),
-      new SimpleNamedModulesPlugin(),
-      new webpack.optimize.ModuleConcatenationPlugin(),
-      new webpack.optimize.OccurrenceOrderPlugin(),
-      new CompressionPlugin()
-    );
-    config.devtool = 'source-map';
-  } else {
-    config.plugins.push(
-      new webpack.HotModuleReplacementPlugin() // Enable HMR
-    );
+      },
+      'css-loader',
+      'sass-loader',
+    ],
+  });
+  config.module.rules = rules;
+  return config;
+};
 
-    config.devServer = {
-      host: devServer.host,
-      port: devServer.port,
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      hot: true,
-      stats: (process.env.WEBPACK_STATS || 'minimal'),
-    };
-    // Source maps
-    config.devtool = 'inline-source-map';
-  }
+const pluginConfig = function(env, argv) {
+  var pluginEnv = env.plugin;
+  const pluginRoot = pluginEnv.root;
+  const pluginName = pluginEnv.name.replace('-', '_'); // module federation doesnt like -
+
+  console.log('pluginEntries', pluginEnv.entries);
+
+  var config = commonConfig(env, argv);
+  console.log('pluginEnv', pluginEnv);
+  console.log('pluginEnv root', pluginRoot);
+  config.context = path.join(pluginRoot, 'webpack');
+  config.entry = {
+    // global: './global_index.js',
+    index: './index.js',
+    // test: path.resolve(pluginEnv.root, 'node_modules', 'webpack', 'index.js'),
+  };
+  var pluginEntries = {
+    './index': path.resolve(pluginRoot, 'webpack', 'index'),
+  };
+  pluginEnv.entries.filter(Boolean).forEach(entry => {
+    pluginEntries[`./${entry}_index`] = path.resolve(
+      pluginRoot,
+      'webpack',
+      `${entry}_index`
+    );
+    config.entry[entry] = `./${entry}_index`;
+  });
+
+  config.output = {
+    path: path.join(__dirname, '..', 'public', 'webpack', pluginName),
+    publicPath: '/webpack/' + pluginName + '/',
+    uniqueName: pluginName,
+  };
+
+  var configModules = config.resolve.modules || [];
+  // make webpack to resolve modules from core first
+  configModules.unshift(path.resolve(__dirname, '..', 'node_modules'));
+  // add plugin's node_modules to the reslver list
+  configModules.push(path.resolve(pluginRoot, 'node_modules'));
+  config.resolve.modules = configModules;
+
+  //get the list of webpack plugins
+  var plugins = config.plugins;
+  console.log('path plugin', path.resolve(pluginRoot, 'webpack', 'index.js'));
+  plugins.push(
+    new ModuleFederationPlugin({
+      name: pluginName,
+      filename: pluginName + '_remoteEntry.js',
+      shared: {
+        ...moduleFederationSharedConfig(env, argv),
+        '../../foreman/webpack/assets/javascripts/react_app/components/HostDetails/Templates/CardItem/CardTemplate/index.js': {
+          singleton: true,
+          shareKey: 'CardTemplate',
+
+        },
+      },
+      exposes: pluginEntries,
+
+    })
+  );
+  plugins.push(
+    new MiniCssExtractPlugin({
+      ignoreOrder: true,
+      filename: pluginName + '/[name].css',
+      chunkFilename: pluginName + '/[id].css',
+    })
+  );
+  const manifestFilename = pluginName + '_manifest.json';
+  plugins.push(
+    new StatsWriterPlugin({
+      filename: manifestFilename,
+      fields: null,
+      transform: function(data, opts) {
+        return JSON.stringify(
+          {
+            assetsByChunkName: data.assetsByChunkName,
+            errors: data.errors,
+            warnings: data.warnings,
+          },
+          null,
+          2
+        );
+      },
+    })
+  );
+  plugins.push(
+    new BundleAnalyzerPlugin({
+      generateStatsFile: true,
+      analyzerMode: 'static',
+      openAnalyzer: false,
+      statsFilename: pluginName + '_stats.json',
+    })
+  );
+  config.plugins = plugins;
+  var rules = config.module.rules;
+  rules.push({
+    test: /\.(sa|sc|c)ss$/,
+    use: [
+      {
+        loader: MiniCssExtractPlugin.loader,
+        // options: {
+        // filename: pluginName + '/[name].css',
+        // publicPath:
+        //   path.join(
+        //     __dirname,
+        //     '..',
+        //     'public',
+        //     'webpack',
+        //     'plugins_css',
+        //     pluginName
+        //   ) + '/',
+        // },
+      },
+      'css-loader',
+      'sass-loader',
+    ],
+  });
+  config.module.rules = rules;
 
   return config;
+};
+
+module.exports = function(env, argv) {
+  var pluginsDirs = pluginUtils.getPluginDirs('pipe');
+  var pluginsInfo = {};
+  var pluginsConfigEnv = [];
+  const pluginDirKeys = Object.keys(pluginsDirs.plugins);
+  pluginDirKeys.forEach(pluginDirKey => {
+    const parts = pluginDirKey.split(':');
+    const name = parts[0];
+    const entry = parts[1];
+    if (pluginsInfo[name]) {
+      pluginsInfo[name].entries.push(entry);
+    } else {
+      pluginsInfo[name] = {
+        name,
+        entries: [entry],
+        root: pluginsDirs.plugins[pluginDirKey].root,
+      };
+    }
+    // if (!pluginDirKey.includes('global') && pluginDirKey.includes('ansible')) {
+    if (!pluginDirKey.includes(':')) {
+      console.log(
+        'has global',
+        pluginDirKey,
+        pluginDirKeys.includes(pluginDirKey + ':global')
+      );
+      pluginsConfigEnv.push({
+        plugin: {
+          routes: pluginDirKeys.includes(pluginDirKey + ':routes'), // TODO load???
+          global: pluginDirKeys.includes(pluginDirKey + ':global'),
+          name: pluginDirKey,
+          root: pluginsDirs.plugins[pluginDirKey].root,
+        },
+      });
+    }
+  });
+
+  console.log('pluginsConfigEnv', pluginsConfigEnv);
+  console.log('pluginsInfo', pluginsInfo);
+  let configs = [];
+  const pluginsInfoValues = Object.values(pluginsInfo);
+  if (pluginsInfoValues.length > 0) {
+    configs = pluginsInfoValues.map(plugin =>
+      pluginConfig({ ...env, plugin }, argv)
+    );
+  }
+  // if (pluginsConfigEnv.length > 0) {
+  //   configs = pluginsConfigEnv.map(({ plugin }) =>
+  //     pluginConfig({ ...env, plugin }, argv)
+  //   );
+  // }
+  // console.log('configs', configs[0].plugins);
+  // return configs;
+  // if (env && env.plugin !== undefined) {
+  //   return pluginConfig(env, argv);
+  // }
+
+  // return configs[0];
+  return [coreConfig(env, argv), ...configs];
+  // return coreConfig(env, argv);
 };

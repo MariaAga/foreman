@@ -1,3 +1,6 @@
+//= link vendor.js
+//= link bundle.js
+//= link bundle.css
 //= link_tree ../../../vendor/assets/fonts
 //= link_tree ../images
 //= link application.css
@@ -13,6 +16,7 @@
 //= link compute_resources/ovirt/display.js
 //= link compute_resources/vmware/nic_info.js
 //= link host_edit.js
+//= link load_template.js
 //= link host_edit_interfaces.js
 //= link hosts.js
 // link reports.js

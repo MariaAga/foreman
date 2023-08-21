@@ -7,7 +7,8 @@ import history from '../../history';
 
 const logReduxToConsole = () => {
   const isProduction = process.env.NODE_ENV === 'production';
-  const isLogger = process.env.REDUX_LOGGER;
+  // const isLogger = process.env.REDUX_LOGGER;
+  const isLogger = false;
 
   if (!isProduction && !global.__testing__) {
     if (isLogger === undefined || isLogger === true) return true;
@@ -20,5 +21,5 @@ export const middlewares = [
   IntervalMiddleware,
   APIMiddleware,
   routerMiddleware(history),
-  ...(logReduxToConsole() ? [createLogger()] : []),
+  // ...(logReduxToConsole() ? [createLogger()] : []),
 ];

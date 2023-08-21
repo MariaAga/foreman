@@ -11,7 +11,7 @@ import { foremanUrl } from '../../../../../../common/helpers';
 import { useAPI } from '../../../../../../common/hooks/API/APIHooks';
 import EmptyState from '../../../../../common/EmptyState';
 import ErrorBoundary from '../../../../../common/ErrorBoundary';
-import CardTemplate from '../../../../Templates/CardItem/CardTemplate';
+import CardTemplate from 'foremanReact/components/HostDetails/Templates/CardItem/CardTemplate';
 import VirtVmware from './VirtVmware';
 import VirtOvirt from './VirtOvirt';
 import VirtLibvirt from './VirtLibvirt';

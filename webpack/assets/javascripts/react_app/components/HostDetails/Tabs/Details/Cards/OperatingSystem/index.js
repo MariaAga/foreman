@@ -8,7 +8,7 @@ import {
   Button,
 } from '@patternfly/react-core';
 import { translate as __ } from '../../../../../../common/I18n';
-import CardTemplate from '../../../../Templates/CardItem/CardTemplate';
+import CardTemplate from 'foremanReact/components/HostDetails/Templates/CardItem/CardTemplate';
 import Slot from '../../../../../common/Slot';
 import SkeletonLoader from '../../../../../common/SkeletonLoader';
 import DefaultLoaderEmptyState from '../../../../DetailsCard/DefaultLoaderEmptyState';

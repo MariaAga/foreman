@@ -8,7 +8,7 @@ import { foremanUrl } from '../../../../../../common/helpers';
 import { useAPI } from '../../../../../../common/hooks/API/APIHooks';
 import SkeletonLoader from '../../../../../common/SkeletonLoader';
 import DefaultLoaderEmptyState from '../../../../DetailsCard/DefaultLoaderEmptyState';
-import CardTemplate from '../../../../Templates/CardItem/CardTemplate';
+import CardTemplate from 'foremanReact/components/HostDetails/Templates/CardItem/CardTemplate';
 import { STATUS } from '../../../../../../constants';
 import { ReviewModal } from './ReviewModal';
 

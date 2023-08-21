@@ -24,9 +24,9 @@ import * as dashboard from './dashboard';
 import * as spice from './spice';
 import * as typeAheadSelect from './foreman_type_ahead_select';
 import * as lookupKeys from './foreman_lookup_keys';
-import './react_app/common/MountingService';
 import './foreman_overrides';
 import './bundle_novnc';
+import './react_app/common/MountingService';
 
 // Set the public path for dynamic imports
 if (process.env.NODE_ENV !== 'production') {

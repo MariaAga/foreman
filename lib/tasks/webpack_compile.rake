@@ -13,7 +13,7 @@ namespace :webpack do
     ENV["NODE_ENV"] ||= 'production'
     webpack_bin = ::Rails.root.join(::Rails.configuration.webpack.binary)
     config_file = ::Rails.root.join(::Rails.configuration.webpack.config_file)
-    max_old_space_size = "2048"
+    max_old_space_size = "8128"
 
     unless File.exist?(webpack_bin)
       raise "Can't find our webpack executable at #{webpack_bin} - have you run `npm install`?"
@@ -22,7 +22,6 @@ namespace :webpack do
     unless File.exist?(config_file)
       raise "Can't find our webpack config file at #{config_file}"
     end
-
-    sh "node --max_old_space_size=#{max_old_space_size} #{webpack_bin} --config #{config_file} --bail"
+    sh "node --max_old_space_size=#{max_old_space_size} #{webpack_bin} --config #{config_file}" # TODO: add bail in webpack 5 https://github.com/webpack/webpack/issues/7993
   end
 end

@@ -6,6 +6,8 @@
 /* eslint-disable jquery/no-class */
 
 import $ from 'jquery';
+// import { importRemote } from '@module-federation/utilities';
+import { importRemote } from './importRemote';
 import { sprintf, translate as __ } from './react_app/common/I18n';
 
 import { showLoading, hideLoading } from './foreman_navigation';
@@ -166,3 +168,21 @@ export function highlightTabErrors() {
     .find('.form-control')
     .focus();
 }
+
+export const loadPluginModule = async (url, scope, module, plugin = true) => {
+  console.log('loadPluginModule', url, scope, module, plugin)
+  if (!window.allPluginsLoaded) {
+    window.allPluginsLoaded = {};
+  }
+  const name = `${scope}${module}`;
+  window.allPluginsLoaded[name] = false;
+  await importRemote({
+    url,
+    scope,
+    module,
+    remoteEntryFileName: plugin ? `${scope}_remoteEntry.js` : 'remoteEntry.js',
+  });
+  window.allPluginsLoaded[name] = true;
+  const loadPlugin = new Event('loadPlugin');
+  document.dispatchEvent(loadPlugin);
+};

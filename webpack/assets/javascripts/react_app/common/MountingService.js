@@ -1,16 +1,58 @@
 import ReactDOM from 'react-dom';
+import React, { useState, useEffect } from 'react';
 import store from '../redux';
 import componentRegistry from '../components/componentRegistry';
 
 export { default as registerReducer } from '../redux/reducers/registerReducer';
 
+// eslint-disable-next-line react/prop-types
+const AwaitedMount = ({ component, data, flattenData }) => {
+  const [mounted, setMounted] = useState(false);
+  const [mountedComponent, setMountedComponent] = useState(null);
+  const [allPluginsImported, setAllPluginsImported] = useState(false);
+  async function mountComponent() {
+    if (componentRegistry.registry[component]) {
+      setMounted(true);
+      setMountedComponent(
+        componentRegistry.markup(component, {
+          data,
+          store,
+          flattenData,
+        })
+      );
+    } else if (allPluginsImported) {
+      const awaitedComponent = componentRegistry.markup(component, {
+        data,
+        store,
+        flattenData,
+      });
+      setMounted(true);
+      setMountedComponent(awaitedComponent);
+    }
+  }
+  const updateAllPluginsImported = e => {
+    if (Object.values(window.allPluginsLoaded).every(Boolean))
+      setAllPluginsImported(true);
+  };
+  useEffect(() => {
+    document.addEventListener('loadPlugin', updateAllPluginsImported);
+    return () =>
+      window.removeEventListener('loadPlugin', updateAllPluginsImported);
+  }, []);
+  useEffect(() => {
+    if (!mounted) mountComponent();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [allPluginsImported]);
+  return mounted ? mountedComponent : <div>Loading...</div>;
+};
+
 function mountNode(component, reactNode, data, flattenData) {
   ReactDOM.render(
-    componentRegistry.markup(component, {
-      data,
-      store,
-      flattenData,
-    }),
+    <AwaitedMount
+      component={component}
+      data={data}
+      flattenData={flattenData}
+    />,
     reactNode
   );
 }

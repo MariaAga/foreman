@@ -23,9 +23,9 @@ const CardTemplate = ({
   overrideDropdownProps,
   masonryLayout,
 }) => {
-  const { cardExpandStates, dispatch, registerCard } = useContext(
-    CardExpansionContext
-  );
+  console.log('CardTemplate', header);
+  const cardContext = useContext(CardExpansionContext);
+  const { cardExpandStates, dispatch, registerCard } = cardContext;
   const cardId = header;
   const [dropdownVisibility, setDropdownVisibility] = useState(false);
   const isExpanded = expandable && cardExpandStates[`${cardId}`] === true;

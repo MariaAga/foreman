@@ -56,6 +56,13 @@ const HostDetails = ({
     `/api/hosts/${id}?show_hidden_parameters=true`,
     HOST_DETAILS_API_OPTIONS
   );
+  const prevItemsRef = React.useRef({});
+  React.useEffect(() => {
+    console.log('Previous response:', Object.keys(prevItemsRef.current));
+    console.log('New response:', Object.keys(response));
+    prevItemsRef.current = response;
+  }, [response]);
+
   const isNavCollapsed = useSelector(selectIsCollapsed);
   const tabs = useSelector(
     state => selectFillsIDs(state, TABS_SLOT_ID),

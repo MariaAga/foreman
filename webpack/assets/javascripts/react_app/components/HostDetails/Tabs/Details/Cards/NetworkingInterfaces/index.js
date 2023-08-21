@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Divider, Button } from '@patternfly/react-core';
 import { translate as __ } from '../../../../../../common/I18n';
-import CardTemplate from '../../../../Templates/CardItem/CardTemplate';
+import CardTemplate from 'foremanReact/components/HostDetails/Templates/CardItem/CardTemplate';
 import { STATUS } from '../../../../../../constants';
 import NICDescriptionList from './NICDescriptionList';
 import SkeletonLoader from '../../../../../common/SkeletonLoader';

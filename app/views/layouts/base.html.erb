@@ -7,17 +7,11 @@
     <meta name="description" content="">
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
     <%= yield(:meta) %>
-
     <%= favicon_link_tag "favicon.ico"%>
-
-    <%= stylesheet_link_tag *webpack_asset_paths('foreman-vendor', :extension => 'css') %>
-    <%= stylesheet_link_tag *webpack_asset_paths('bundle', :extension => 'css') %>
+    <%= css_chunks %>
     <%= stylesheet_link_tag 'application' %>
-    <%= webpacked_plugins_with_global_css %>
     <%= yield(:stylesheets) %>
-
     <%= csrf_meta_tags %>
-
     <script type="text/javascript">
       var URL_PREFIX = '<%= controller.relative_url_root %>';
 
@@ -33,22 +27,21 @@
     </script>
     <%= javascript_include_tag "locale/#{FastGettext.locale}/app" %>
     <%= locale_js_tags %>
-    
+    <%= stylesheet_link_tag('bundle', :extension => 'css') %>
     <%= yield(:head) %>
   </head>
-
-  <body class='<%= body_css_classes %>'>
-    <%= javascript_include_tag *webpack_asset_paths('foreman-vendor', :extension => 'js') %>
-    <%= javascript_include_tag *webpack_asset_paths('vendor', :extension => 'js') %>
-    <%= javascript_include_tag *webpack_asset_paths('bundle', :extension => 'js') %>
+  <body class='<%= body_css_classes %>' id='body-test'>
+    <%= js_chunks %>
+    <%= javascript_include_tag('vendor') %>
+    <%= javascript_include_tag('bundle') %>
     <%= javascript_include_tag 'application' %>
+    <%=  javascript_tag("window.tfm.tools.loadPluginModule('/webpack/katello','katello','./common_index');".html_safe) %>
     <%= webpacked_plugins_with_global_js %>
-    <%= webpack_dev_server %>
+    <%= remote_webpack %>
     <%= yield(:javascripts) %>
     <script type="text/javascript">
       <%= yield(:inline_javascripts) %>
     </script>
-
     <!--[if lte IE 9]>
       <%= _('You are using an unsupported browser.') %>
       <%= _('See list of supported browsers: %s') % documentation_url("3.1.4BrowserCompatibility") %>
@@ -61,8 +54,7 @@
         id="rails-app-content"
         class="pf-c-page"
       >
-
-      <%= yield(:content) %>
+        <%= yield(:content) %>
       </div>
     <% else %>
       <%= yield(:content) %>

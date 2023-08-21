@@ -9,7 +9,7 @@ import {
 } from '@patternfly/react-core';
 import { translate as __ } from '../../../common/I18n';
 import Slot from '../../common/Slot';
-import CardTemplate from '../Templates/CardItem/CardTemplate';
+import CardTemplate from 'foremanReact/components/HostDetails/Templates/CardItem/CardTemplate';
 import RelativeDateTime from '../../common/dates/RelativeDateTime';
 
 const RecentCommunicationCard = ({ hostName, hostDetails }) => {
