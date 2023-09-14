@@ -1,6 +1,3 @@
-# We need to delete the existing task which comes from webpack-rails gem or this task will get executed twice
-Rake::Task['webpack:compile'].clear
-
 namespace :webpack do
   # TODO: remove after migrating away from webpack-rails (after setting the
   # max_old_space_size) in other tool.
@@ -23,6 +20,6 @@ namespace :webpack do
       raise "Can't find our webpack config file at #{config_file}"
     end
 
-    sh "node --max_old_space_size=#{max_old_space_size} #{webpack_bin} --config #{config_file} --bail"
+    sh "npx --max_old_space_size=#{max_old_space_size} #{webpack_bin} --config #{config_file} --bail"
   end
 end

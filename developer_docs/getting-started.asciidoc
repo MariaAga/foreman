@@ -36,10 +36,8 @@ Following steps are required to setup a webpack development environment:
    - using `script/foreman-start-dev` (starts rails and webpack server)
    - executing rails and webpack processes "manually"
      ```bash
-     ./node_modules/.bin/webpack-dev-server \
+      npx webpack \
        --config config/webpack.config.js \
-       --port 3808 \
-       --public $(hostname):3808
      ```
 
 4. **Additional config**
@@ -48,15 +46,9 @@ Following steps are required to setup a webpack development environment:
 +
 [source,bash]
 ----
-   ./node_modules/.bin/webpack-dev-server \
+   npx webpack \
      --config config/webpack.config.js \
-     --port 3808 \
-     --public $(hostname):3808 \
-     --https \
-     --key /etc/pki/katello/private/katello-apache.key \
-     --cert /etc/pki/katello/certs/katello-apache.crt \
-     --cacert /etc/pki/katello/certs/katello-default-ca.crt \
-     --watch-poll 1000 # only use for NFS https://community.theforeman.org/t/webpack-watch-over-nfs/10922
+     --watchOptions-poll 1000 # only use for NFS https://community.theforeman.org/t/webpack-watch-over-nfs/10922
 ----
 +
 Additionally you can set `NOTIFICATIONS_POLLING` variable to extend the notification polling interval that is 10s by default and can clutter the console.
