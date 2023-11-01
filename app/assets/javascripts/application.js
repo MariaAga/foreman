@@ -7,8 +7,17 @@
 //= require lookup_keys
 
 $(function() {
-  $(document).trigger('ContentLoad');
+  $(document).on('loadJS', function() {
+    $(document).trigger('ContentLoad');
+  });
 });
+
+
+// Override jQuery's ready function to run only after all scripts are loaded instead of when the DOM is ready
+$.fn.ready = function(fn) {
+  this.on('loadJS', fn);
+  return this;
+};
 
 // Prevents all links with the disabled attribute set to "disabled"
 // from being clicked.

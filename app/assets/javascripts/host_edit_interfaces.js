@@ -413,9 +413,9 @@ $(document).on('change', '.interface_mac', function(event) {
       .find('.interface_mac')
       .attr('id')
   ) {
-    var interface = $('#interfaceModal').find('.interface_mac');
-    var mac = interface.val();
-    var baseurl = interface.attr('data-url');
+    var interface_ = $('#interfaceModal').find('.interface_mac');
+    var mac = interface_.val();
+    var baseurl = interface_.attr('data-url');
     $.ajax({
       type: 'GET',
       url: baseurl + '?mac=' + mac,

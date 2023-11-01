@@ -7,6 +7,8 @@
  * together into a single string and encoded as base64.
  */
 
+import { Buffer } from 'buffer';
+
 const idSeparator = '-';
 const versionSeparator = ':';
 const defaultVersion = '01';

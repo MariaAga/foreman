@@ -140,9 +140,11 @@
 <% end %>
 
 <% if @user.cached_usergroups.any? %>
-  <script>
+  <% content_for(:javascripts) do %>
+    <script>
       $(function() {
         tfm.users.initInheritedRoles();
-      });
-  </script>
+        });
+    </script>
+  <% end %>
 <% end  %>

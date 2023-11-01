@@ -22,7 +22,7 @@ Foreman::Application.configure do |app|
   # Precompile additional assets
   config.assets.precompile += FastGettext.default_available_locales.map { |loc| "locale/#{loc}/app.js" }
 
-  # Adds plugin assets to the application digests hash if a manifest file exists for a plugin
+    # Adds plugin assets to the application digests hash if a manifest file exists for a plugin
   config.after_initialize do
     if (manifest_file = Dir.glob("#{Rails.root}/public/assets/.sprockets-manifest*.json").first)
       foreman_manifest = JSON.parse(File.read(manifest_file))
@@ -51,36 +51,6 @@ Foreman::Application.configure do |app|
         file.write(foreman_manifest.to_json)
         app.assets_manifest              = Sprockets::Manifest.new(app.assets, file.path)
         ActionView::Base.assets_manifest = app.assets_manifest
-      end
-    end
-
-    # When the dev server is enabled, this static manifest file is ignored and
-    # always retrieved from the dev server.
-    #
-    # Otherwise we need to combine all the chunks from the various webpack
-    # manifests. This is the main foreman manifest and all plugins that may
-    # have one. We then store this in the webpack-rails manifest using our
-    # monkey patched function.
-    unless config.webpack.dev_server.enabled
-      if (webpack_manifest_file = Dir.glob("#{Rails.root}/public/webpack/manifest.json").first)
-        webpack_manifest = JSON.parse(File.read(webpack_manifest_file))
-
-        Foreman::Plugin.with_webpack.each do |plugin|
-          manifest_path = plugin.webpack_manifest_path
-          next unless manifest_path
-
-          Rails.logger.debug { "Loading #{plugin.id} webpack asset manifest from #{manifest_path}" }
-          assets = JSON.parse(File.read(manifest_path))
-
-          plugin_id = plugin.id.to_s
-          assets['assetsByChunkName'].each do |chunk, filename|
-            if chunk == plugin_id || chunk.start_with?("#{plugin_id}:")
-              webpack_manifest['assetsByChunkName'][chunk] = filename
-            end
-          end
-        end
-
-        Webpack::Rails::Manifest.manifest = webpack_manifest
       end
     end
   end
