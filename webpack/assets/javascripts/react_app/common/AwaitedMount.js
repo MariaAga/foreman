@@ -7,45 +7,27 @@ import componentRegistry from '../components/componentRegistry';
 export const AwaitedMount = ({ component, data, flattenData }) => {
   const [mounted, setMounted] = useState(false);
   const [mountedComponent, setMountedComponent] = useState(null);
-  const [allPluginsImported, setAllPluginsImported] = useState(
-    window.allJsLoaded
-  );
-  async function mountComponent() {
-    if (componentRegistry.registry[component]) {
-      setMounted(true);
-      setMountedComponent(
-        componentRegistry.markup(component, {
-          data,
-          store,
-          flattenData,
-        })
-      );
-    } else if (allPluginsImported) {
-      const awaitedComponent = componentRegistry.markup(component, {
-        data,
-        store,
-        flattenData,
-      });
-      setMounted(true);
-      setMountedComponent(awaitedComponent);
-    }
-  }
-  const updateAllPluginsImported = e => {
-    setAllPluginsImported(true);
-  };
   useEffect(() => {
-    document.addEventListener('loadJS', updateAllPluginsImported);
-    return () => window.removeEventListener('loadJS', updateAllPluginsImported);
-  }, []);
-  useEffect(() => {
-    if (!mounted) mountComponent();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [allPluginsImported]);
-  useEffect(() => {
-    // Update the component if the data (props) change
-    if (allPluginsImported) mountComponent();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+    const tryMountComponent = () => {
+      if (componentRegistry.registry[component]) {
+        setMounted(true);
+        setMountedComponent(
+          componentRegistry.markup(component, {
+            data,
+            store,
+            flattenData,
+          })
+        );
+      } else if (
+        window.allPluginsLoaded === undefined ||
+        Object.values(window.allPluginsLoaded).every(Boolean)
+      ) {
+        console.error(`Component ${component} not found in registry`);
+      }
+    };
+    document.addEventListener('loadPlugin', tryMountComponent);
+    return () => document.removeEventListener('loadPlugin', tryMountComponent);
+  }, [component, data, flattenData]);
   return mounted ? mountedComponent : null;
 };
 
