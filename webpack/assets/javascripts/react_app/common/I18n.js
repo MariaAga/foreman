@@ -1,5 +1,6 @@
+/* eslint-disable import/no-dynamic-require */
 import Jed from 'jed';
-import { addLocaleData } from 'react-intl';
+// import { addLocaleData } from 'react-intl';
 import forceSingleton from './forceSingleton';
 
 class IntlLoader {
@@ -9,25 +10,7 @@ class IntlLoader {
     // eslint-disable-next-line prefer-destructuring
     this.locale = locale.split('-')[0];
     this.timezone = this.fallbackIntl ? 'UTC' : timezone;
-    this.ready = this.init();
-  }
-
-  async init() {
-    await this.fetchIntl();
-    const localeData = await import(
-      /* webpackChunkName: 'react-intl/locale/[request]' */ `react-intl/locale-data/${this.locale}`
-    );
-    addLocaleData(localeData.default);
-    return true;
-  }
-
-  async fetchIntl() {
-    if (this.fallbackIntl) {
-      global.Intl = await import(/* webpackChunkName: "intl" */ 'intl');
-      await import(
-        /* webpackChunkName: 'intl/locale/[request]' */ `intl/locale-data/jsonp/${this.locale}`
-      );
-    }
+    this.ready = true;
   }
 }
 

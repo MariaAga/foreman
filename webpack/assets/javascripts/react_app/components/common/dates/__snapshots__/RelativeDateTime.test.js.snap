@@ -8,7 +8,7 @@ exports[`RelativeDateTime formats date 1`] = `
   <span
     title="Oct 13, 2017, 11:54 AM"
   >
-    <FormattedRelative
+    <FormattedRelativeTime
       style="numeric"
       updateInterval={10000}
       value={2017-10-13T11:54:55.000Z}
@@ -16,7 +16,7 @@ exports[`RelativeDateTime formats date 1`] = `
       <span>
         15 days ago
       </span>
-    </FormattedRelative>
+    </FormattedRelativeTime>
   </span>
 </RelativeDateTime>
 `;

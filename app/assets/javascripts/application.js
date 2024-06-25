@@ -79,13 +79,13 @@ function onContentLoad() {
 
   password_caps_lock_hint();
 
-  tfm.i18n.intl.ready.then(function() {
+  // tfm.i18n.intl.ready.then(function() {
     var tz = jstz.determine();
     $.cookie('timezone', tz.name(), {
       path: '/',
       secure: location.protocol === 'https:',
     });
-  });
+  // });  
 
   $('.full-value').SelectOnClick();
   activate_select2(':root');

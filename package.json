@@ -20,20 +20,20 @@
     "analyze": "./script/webpack-analyze"
   },
   "dependencies": {
+    "@formatjs/intl-utils": "^3.8.4",
     "@module-federation/utilities": "^1.7.0",
     "@theforeman/vendor": "^13.0.1",
     "graphql-tag": "^2.11.0",
     "intl": "~1.2.5",
     "jed": "^1.1.1",
     "os-browserify": "^0.3.0",
-    "react-intl": "^2.8.0"
+    "react-intl": "^6.6.8"
   },
   "devDependencies": {
     "@babel/core": "^7.7.0",
     "@theforeman/builder": "^13.0.1",
     "@theforeman/eslint-plugin-foreman": "^13.0.1",
     "@theforeman/eslint-plugin-rules": "^13.0.1",
-    "@theforeman/test": "^13.0.1",
     "@theforeman/vendor-dev": "^13.0.1",
     "@types/jest": "<27.0.0",
     "argv-parse": "^1.0.1",
