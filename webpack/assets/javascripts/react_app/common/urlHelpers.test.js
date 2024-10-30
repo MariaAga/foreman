@@ -1,5 +1,5 @@
 import { mockWindowLocation } from './testHelpers';
-import { visit } from '../../foreman_navigation';
+import { visit } from './helpers';
 import {
   urlBuilder,
   urlWithSearch,
