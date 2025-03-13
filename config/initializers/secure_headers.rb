@@ -9,7 +9,9 @@
     :child_src   => ["'self'"],
     :connect_src => ["'self'", 'ws:', 'wss:'],
     :style_src   => ["'unsafe-inline'", "'self'"],
-    :script_src  => ["'unsafe-eval'", "'unsafe-inline'", "'self'"],
+    # :script_src  => ["'unsafe-eval'", "'unsafe-inline'", "'self'", "http://localhost:3002"],
+    :script_src  => ["'unsafe-eval'", "'unsafe-inline'", "'self'", "http://localhost:8080"],
+    # script_src:  SecureHeaders::OPT_OUT,
     :img_src     => ["'self'", 'data:'],
   }
 end
