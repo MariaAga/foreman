@@ -7,7 +7,7 @@
   config.csp = {
     :default_src => ["'self'"],
     :child_src   => ["'self'"],
-    :connect_src => ["'self'", 'ws:', 'wss:'],
+    :connect_src => ["'self'", 'ws:', 'wss:', "http://localhost:8080"],
     :style_src   => ["'unsafe-inline'", "'self'"],
     # :script_src  => ["'unsafe-eval'", "'unsafe-inline'", "'self'", "http://localhost:3002"],
     :script_src  => ["'unsafe-eval'", "'unsafe-inline'", "'self'", "http://localhost:8080"],

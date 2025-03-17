@@ -70,6 +70,9 @@ end
 require_relative '../lib/foreman'
 require_relative '../lib/foreman/dynflow'
 
+
+# require_relative '../lib/proxy_middleware' # Ensure the middleware file is required
+
 if SETTINGS[:support_jsonp]
   if File.exist?(File.expand_path('../Gemfile.in', __dir__))
     BundlerExt.system_require(File.expand_path('../Gemfile.in', __dir__), :jsonp)

@@ -1,0 +1,46 @@
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/components/icon-404.scss ***!
+  \**********************************************************************************************************************************************************************************************************************/
+.landing .Icon404 {
+  height: 150px;
+}
+
+.landing .Icon404 .cls-1 {
+  fill: #fff;
+}
+
+.landing .Icon404 .cls-1, .landing .Icon404 .cls-3 {
+  fill-rule: evenodd;
+}
+
+.landing .Icon404 .cls-2 {
+  opacity: 0.5;
+}
+
+.landing .Icon404 .cls-4 {
+  mask: url(#mask);
+}
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/routes/404.scss ***!
+  \*************************************************************************************************************************************************************************************************************/
+.landing .land-c-page__404 {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.landing .land-c-page__404 .land-c-text__sorry {
+  max-width: 70%;
+}
+
+.landing .land-c-page__404 h1, .landing .land-c-page__404 svg {
+  margin-bottom: 30px;
+  margin-bottom: 1.875rem;
+}
+
+.landing .land-c-page__404 a {
+  font-size: 20px;
+  font-size: 1.25rem;
+}

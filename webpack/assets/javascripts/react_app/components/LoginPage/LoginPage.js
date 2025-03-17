@@ -16,7 +16,7 @@ const LoginPage = ({
   version,
 }) => {
   const Bar = () => <span>temp</span>;
-  const Dot = () => <span>temp</span>;
+  // const Dot = () => <span>temp</span>;
   // const Bar = React.lazy(() =>
   //   importRemote({
   //     url: 'http://localhost:3002',
@@ -25,14 +25,14 @@ const LoginPage = ({
   //     remoteEntryFileName: 'app2-remoteEntry.js',
   //   })
   // );
-  // const Dot = React.lazy(() =>
-  //   importRemote({
-  //     url: 'http://localhost:8080',
-  //     scope: 'shell',
-  //     module: 'App',
-  //     remoteEntryFileName: 'shellEntry.js',
-  //   })
-  // );
+  const Dot = React.lazy(() =>
+    importRemote({
+      url: 'http://localhost:8080',
+      scope: 'shell',
+      module: 'App',
+      remoteEntryFileName: 'shellEntry.js',
+    })
+  );
   window.barTest = Bar;
   const { modifiedAlerts, submitErrors } = adjustAlerts(alerts);
   const footerLinks = caption

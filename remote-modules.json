@@ -1,0 +1,12 @@
+[
+  {
+    "remote": "git@github.com:Hyperkid123/landing-page-frontend.git",
+    "branch": "satellite-poc",
+    "cdnPath": "/apps/landing"
+  }, 
+  {
+    "remote": "git@github.com:RedHatInsights/widget-layout.git",
+    "branch": "satellite-poc",
+    "cdnPath": "/apps/widget-layout"
+  }
+]

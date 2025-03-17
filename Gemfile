@@ -47,6 +47,7 @@ gem 'rack-cors', '~> 1.1', require: 'rack/cors'
 gem 'jwt', '>= 2.2.2', '< 3.0'
 gem 'graphql', '~> 1.13.0'
 gem 'graphql-batch'
+gem 'rack-proxy'
 
 # A bundled gem since Ruby 3.0
 gem 'rss' if RUBY_VERSION >= '3.0'

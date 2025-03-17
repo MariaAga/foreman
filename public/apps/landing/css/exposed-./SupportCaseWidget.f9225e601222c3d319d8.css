@@ -1,0 +1,15 @@
+/*!*****************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/components/widgets/support-case-widget.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************/
+.landing .pf-v5-c-empty-state {
+  height: 100%;
+  padding: var(--pf-global--spacer--md);
+}
+
+.landing .pf-v5-c-empty-state__icon {
+  margin-bottom: 0;
+}
+
+.landing .pf-v5-c-empty-state__body {
+  margin-top: var(--pf-global--spacer--sm);
+}

@@ -1,0 +1,11 @@
+{
+  "name": "landing",
+  "version": "1.0.0",
+  "extensions": [],
+  "registrationMethod": "custom",
+  "baseURL": "/apps/landing/",
+  "loadScripts": [
+    "landing.js"
+  ],
+  "buildHash": "5147974929bdf2c73528e01c7ab1de93"
+}
