@@ -7,9 +7,11 @@
   config.csp = {
     :default_src => ["'self'"],
     :child_src   => ["'self'"],
-    :connect_src => ["'self'", 'ws:', 'wss:'],
-    :style_src   => ["'unsafe-inline'", "'self'"],
-    :script_src  => ["'unsafe-eval'", "'unsafe-inline'", "'self'"],
+    :connect_src => ["'self'", 'ws:', 'wss:', "http://localhost:8080", "ws://localhost:8080", "wss://localhost:8080", "http://localhost:8001"],
+    :style_src   => ["'unsafe-inline'", "'self'", "http://localhost:8001", "http://localhost:8001"],
+    # :script_src  => ["'unsafe-eval'", "'unsafe-inline'", "'self'", "http://localhost:3002"],
+    :script_src  => ["'unsafe-eval'", "'unsafe-inline'", "'self'", "http://localhost:8080", "ws://localhost:8080", "wss://localhost:8080", "http://localhost:8001"],
+    # script_src:  SecureHeaders::OPT_OUT,
     :img_src     => ["'self'", 'data:'],
   }
 end
