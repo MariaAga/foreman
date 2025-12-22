@@ -1,18 +1,55 @@
 import reducer from '../APIReducer';
-import { testReducerSnapshotWithFixtures } from '../../../common/testHelpers';
 import { middlewareActions } from '../APIFixtures';
+import { STATUS } from '../../../constants';
+import { key, payload, data, error } from '../APIFixtures';
 
-const fixtures = {
-  'should return the initial state': {},
+describe('API reducer', () => {
+  it('should return the initial state', () => {
+    const result = reducer(undefined, {});
+    expect(result).toEqual({});
+  });
 
-  'should handle API request action': { action: middlewareActions.request },
+  it('should handle API request action', () => {
+    const result = reducer(undefined, middlewareActions.request);
+    expect(result).toEqual({
+      [key]: {
+        payload,
+        response: null,
+        status: STATUS.PENDING,
+      },
+    });
+  });
 
-  'should handle API success action': { action: middlewareActions.success },
+  it('should handle API success action', () => {
+    const result = reducer(undefined, middlewareActions.success);
+    expect(result).toEqual({
+      [key]: {
+        payload,
+        response: data,
+        status: STATUS.RESOLVED,
+      },
+    });
+  });
 
-  'should handle API failure action': { action: middlewareActions.failure },
+  it('should handle API failure action', () => {
+    const result = reducer(undefined, middlewareActions.failure);
+    expect(result).toEqual({
+      [key]: {
+        payload,
+        response: error,
+        status: STATUS.ERROR,
+      },
+    });
+  });
 
-  "should handle update response's content": { action: middlewareActions.update },
-};
-
-describe('API reducer', () =>
-  testReducerSnapshotWithFixtures(reducer, fixtures));
+  it.only("should handle update response's content", async () => {
+    const initialState = reducer(undefined, middlewareActions.success);
+    const result = reducer(initialState, middlewareActions.update);
+    expect(result).toEqual({
+      [key]: {
+        ...initialState[key],
+        response: 'UPDATED CONTENT',
+      },
+    });
+  });
+});

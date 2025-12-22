@@ -32,8 +32,32 @@ describe('API get', () => {
     modifiedAction.payload.handleSuccess = jest.fn();
     apiRequest(modifiedAction, store);
     await IntegrationTestHelper.flushAllPromises();
-    expect(modifiedAction.payload.handleSuccess.mock.calls).toMatchSnapshot();
-    expect(store.dispatch.mock.calls).toMatchSnapshot();
+    expect(modifiedAction.payload.handleSuccess.mock.calls).toEqual([
+      [apiSuccessResponse, expect.any(Function)],
+    ]);
+    expect(store.dispatch.mock.calls).toEqual([
+      [
+        {
+          key: 'SOME_KEY',
+          payload: {
+            id: 2,
+            url: 'some/url',
+          },
+          type: 'SOME_KEY_REQUEST',
+        },
+      ],
+      [
+        {
+          key: 'SOME_KEY',
+          payload: {
+            id: 2,
+            url: 'some/url',
+          },
+          response: { results: [1] },
+          type: 'SOME_KEY_SUCCESS',
+        },
+      ],
+    ]);
   });
 
   it('should dispatch request and failure actions on reject', async () => {
@@ -48,8 +72,32 @@ describe('API get', () => {
     modifiedAction.payload.handleError = jest.fn();
     apiRequest(modifiedAction, store);
     await IntegrationTestHelper.flushAllPromises();
-    expect(modifiedAction.payload.handleError.mock.calls).toMatchSnapshot();
-    expect(store.dispatch.mock.calls).toMatchSnapshot();
+    expect(modifiedAction.payload.handleError.mock.calls).toEqual([
+      [apiError, expect.any(Function)],
+    ]);
+    expect(store.dispatch.mock.calls).toEqual([
+      [
+        {
+          key: 'SOME_KEY',
+          payload: {
+            id: 2,
+            url: 'some/url',
+          },
+          type: 'SOME_KEY_REQUEST',
+        },
+      ],
+      [
+        {
+          key: 'SOME_KEY',
+          payload: {
+            id: 2,
+            url: 'some/url',
+          },
+          response: apiError,
+          type: 'SOME_KEY_FAILURE',
+        },
+      ],
+    ]);
   });
 
   it('should dispatch stop interval on API error', async () => {
@@ -64,8 +112,32 @@ describe('API get', () => {
     modifiedAction.payload.handleError = jest.fn();
     apiRequest(modifiedAction, store);
     await IntegrationTestHelper.flushAllPromises();
-    expect(modifiedAction.payload.handleError.mock.calls).toMatchSnapshot();
-    expect(store.dispatch.mock.calls).toMatchSnapshot();
+    expect(modifiedAction.payload.handleError.mock.calls).toEqual([
+      [apiError, expect.any(Function)],
+    ]);
+    expect(store.dispatch.mock.calls).toEqual([
+      [
+        {
+          key: 'SOME_KEY',
+          payload: {
+            id: 2,
+            url: 'some/url',
+          },
+          type: 'SOME_KEY_REQUEST',
+        },
+      ],
+      [
+        {
+          key: 'SOME_KEY',
+          payload: {
+            id: 2,
+            url: 'some/url',
+          },
+          response: apiError,
+          type: 'SOME_KEY_FAILURE',
+        },
+      ],
+    ]);
   });
 
   it('should dispatch a success toast notification on API resolve', async () => {
@@ -85,7 +157,42 @@ describe('API get', () => {
     expect(modifiedAction.payload.successToast).toHaveBeenLastCalledWith(
       apiSuccessResponse
     );
-    expect(store.dispatch.mock.calls).toMatchSnapshot();
+    expect(store.dispatch.mock.calls).toEqual([
+      [
+        {
+          key: 'SOME_KEY',
+          payload: {
+            id: 2,
+            url: 'some/url',
+          },
+          type: 'SOME_KEY_REQUEST',
+        },
+      ],
+      [
+        {
+          key: 'SOME_KEY',
+          payload: {
+            id: 2,
+            url: 'some/url',
+          },
+          response: { results: [1] },
+          type: 'SOME_KEY_SUCCESS',
+        },
+      ],
+      [
+        {
+          payload: {
+            key: 'SOME_KEY_SUCCESS',
+            toast: {
+              key: 'SOME_KEY_SUCCESS',
+              message: 'Your API request was successful!',
+              type: 'success',
+            },
+          },
+          type: 'toasts/addToast',
+        },
+      ],
+    ]);
   });
 
   it('should dispatch an error toast notification on API failure', async () => {
@@ -106,7 +213,43 @@ describe('API get', () => {
     expect(modifiedAction.payload.errorToast).toHaveBeenLastCalledWith(
       apiError
     );
-    expect(store.dispatch.mock.calls).toMatchSnapshot();
+    expect(store.dispatch.mock.calls).toEqual([
+      [
+        {
+          key: 'SOME_KEY',
+          payload: {
+            id: 2,
+            url: 'some/url',
+          },
+          type: 'SOME_KEY_REQUEST',
+        },
+      ],
+      [
+        {
+          key: 'SOME_KEY',
+          payload: {
+            id: 2,
+            url: 'some/url',
+          },
+          response: apiError,
+          type: 'SOME_KEY_FAILURE',
+        },
+      ],
+      [
+        {
+          payload: {
+            key: 'SOME_KEY_FAILURE',
+            toast: {
+              key: 'SOME_KEY_FAILURE',
+              message:
+                'Oh no! Something went wrong, server returned the error: bad request',
+              type: 'danger',
+            },
+          },
+          type: 'toasts/addToast',
+        },
+      ],
+    ]);
   });
 
   it('should dispatch an update if an updateData callback exists', async () => {
@@ -119,6 +262,37 @@ describe('API get', () => {
     );
     apiRequest(postActionWithCallback, store);
     await IntegrationTestHelper.flushAllPromises();
-    expect(store.dispatch.mock.calls).toMatchSnapshot();
+    expect(store.dispatch.mock.calls).toEqual([
+      [
+        {
+          key: 'INITIAL_RESOURCE',
+          payload: {
+            id: 2,
+            url: 'some/url',
+          },
+          type: 'SOME_KEY_REQUEST',
+        },
+      ],
+      [
+        {
+          key: 'INITIAL_RESOURCE',
+          payload: {
+            id: 2,
+            url: 'some/url',
+          },
+          response: { results: [1] },
+          type: 'SOME_KEY_SUCCESS',
+        },
+      ],
+      [
+        {
+          key: 'INITIAL_RESOURCE',
+          payload: {
+            results: [3],
+          },
+          type: 'SOME_KEY_UPDATE',
+        },
+      ],
+    ]);
   });
 });

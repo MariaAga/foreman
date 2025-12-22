@@ -1,4 +1,3 @@
-import { testSelectorsSnapshotWithFixtures } from '../../../common/testHelpers';
 import {
   selectAPI,
   selectAPIByKey,
@@ -31,20 +30,49 @@ const failureState = {
   },
 };
 
-const fixtures = {
-  'should return the API wrapper': () => selectAPI(successState),
-  'should return the API substate by key': () =>
-    selectAPIByKey(successState, key),
-  'should return the API substate status': () =>
-    selectAPIStatus(successState, key),
-  'should return the API substate response': () =>
-    selectAPIResponse(successState, key),
-  'should return the API substate payload': () =>
-    selectAPIPayload(successState, key),
-  'should return the API substate error': () =>
-    selectAPIError(failureState, key),
-  'should return the API substate error message': () =>
-    selectAPIErrorMessage(failureState, key),
-};
+describe('API selectors', () => {
+  it('should return the API wrapper', () => {
+    const result = selectAPI(successState);
+    expect(result).toEqual({
+      [key]: {
+        payload,
+        response: data,
+        status: STATUS.RESOLVED,
+      },
+    });
+  });
 
-describe('API selectors', () => testSelectorsSnapshotWithFixtures(fixtures));
+  it('should return the API substate by key', () => {
+    const result = selectAPIByKey(successState, key);
+    expect(result).toEqual({
+      payload,
+      response: data,
+      status: STATUS.RESOLVED,
+    });
+  });
+
+  it('should return the API substate status', () => {
+    const result = selectAPIStatus(successState, key);
+    expect(result).toBe(STATUS.RESOLVED);
+  });
+
+  it('should return the API substate response', () => {
+    const result = selectAPIResponse(successState, key);
+    expect(result).toEqual(data);
+  });
+
+  it('should return the API substate payload', () => {
+    const result = selectAPIPayload(successState, key);
+    expect(result).toEqual(payload);
+  });
+
+  it('should return the API substate error', () => {
+    const result = selectAPIError(failureState, key);
+    expect(result).toBe(error);
+  });
+
+  it('should return the API substate error message', () => {
+    const result = selectAPIErrorMessage(failureState, key);
+    expect(result).toBe('some_error');
+  });
+});
